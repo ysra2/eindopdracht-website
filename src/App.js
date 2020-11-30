@@ -1,6 +1,5 @@
 import React from "react";
 import './styles/style.sass';
-import Homepage from "./components/Homepage";
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
 
