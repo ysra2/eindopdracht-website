@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  flex-direction: column;
+  background: #25c990;
+}
+header p {
+  color: red;
+}
+header button {
+  background: orange;
+}
+header button:hover {
+  background: purple;
+}
+
+/*# sourceMappingURL=style.css.map */
