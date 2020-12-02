@@ -1,15 +1,20 @@
 import React from "react";
 import './styles/style.sass';
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import Homepage from "./components/Homepage";
+// import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
+function App () {
 
-function App() {
-  return (
+      return (
       <div >
-          <header>
-          </header>
+
+          <Homepage/>
+          <Homepage/>
+          <Homepage/>
+
       </div>
   );
+
 }
 
 export default App;
