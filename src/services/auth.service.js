@@ -12,6 +12,16 @@ const register = async (firstName, lastName, username, email, password) => {
     });
 };
 
+const registerT = async (firstNameT, lastNameT, usernameT, emailT, passwordT) => {
+    return await axios.post(API_URL + "signup", {
+        firstNameT,
+        lastNameT,
+        usernameT,
+        emailT,
+        passwordT,
+    });
+};
+
 const login = async (username, password) => {
     return await axios
         .post(API_URL + "signin", {
@@ -20,8 +30,22 @@ const login = async (username, password) => {
         })
         .then((result) => {
             if (result.data.accessToken) {
-                localStorage.setItem("token", JSON.stringify(result.data.accessToken));
-                localStorage.setItem("user_id", JSON.stringify(result.data.id));
+                localStorage.setItem("user_id", JSON.stringify(result.data));
+            }
+
+            return result.data;
+        });
+};
+
+const loginT = async (usernameT, passwordT) => {
+    return await axios
+        .post(API_URL + "signin", {
+            usernameT,
+            passwordT,
+        })
+        .then((result) => {
+            if (result.data.accessToken) {
+                localStorage.setItem("user_id", JSON.stringify(result.data));
             }
 
             return result.data;
@@ -47,6 +71,8 @@ const getCurrentSporter = () => {
 export default {
     register,
     login,
+    registerT,
+    loginT,
     logout,
     getCurrentUser,
     getCurrentTrainer,

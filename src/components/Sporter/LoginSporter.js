@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-import AuthService from "../services/auth.service"
+import AuthService from "../../services/auth.service"
 
-const Login = (props) => {
+const LoginSporter = (props) => {
     const [loginData, setLoginData] = useState({username: "", password: ""});
 
     const loginChange = e => {
@@ -18,7 +18,7 @@ const Login = (props) => {
                     console.log(result.data);
                     // localStorage.setItem("token", JSON.stringify(result.data.accessToken));
                     // localStorage.setItem("user_id", JSON.stringify(result.data.id));
-                    props.history.push("/profile");
+                    props.history.push("/profile/sporter");
         }
         catch (error) {
 
@@ -48,5 +48,5 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default LoginSporter;
 
