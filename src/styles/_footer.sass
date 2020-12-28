@@ -1,0 +1,18 @@
+@mixin flex($direction, $background)
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 20vh
+  flex-direction: $direction
+  background: $background
+
+
+footer
+  @include flex(column, $primaryBgc)
+  //background: $primaryBgc
+  p
+    color: red
+  button
+    background: $primaryBtn
+    &:hover
+      background: purple

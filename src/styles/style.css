@@ -16,4 +16,33 @@ header button:hover {
   background: purple;
 }
 
+.colum {
+  float: left;
+  width: 60vh;
+  padding: 100px;
+  height: 50%;
+}
+
+.row {
+  display: table;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  flex-direction: column;
+  background: #25c990;
+}
+footer p {
+  color: red;
+}
+footer button {
+  background: orange;
+}
+footer button:hover {
+  background: purple;
+}
+
 /*# sourceMappingURL=style.css.map */

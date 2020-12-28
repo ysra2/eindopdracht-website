@@ -1,27 +1,29 @@
 import React from "react";
 import './styles/style.sass';
-import Homepage from "./components/Homepage";
+import Homepage from "./components/pages/Homepage";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SporterProfile from "./components/Sporter/SporterProfile";
-import RegisterSporter from "./components/Sporter/RegisterSporter";
-import LoginSporter from "./components/Sporter/LoginSporter";
-import RegisterTrainer from "./components/Trainer/RegisterTrainer";
-import LoginTrainer from "./components/Trainer/LoginTrainer";
-import TrainerProfile from "./components/Trainer/TrainerProfile";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+import RegisterTrainer from "./components/RegisterTrainer";
+import Trainer from "./components/pages/Sporter";
+import Sporter from "./components/pages/Trainer";
+
 
 function App () {
 
       return (
       <div >
-          <Homepage/>
+
+          {/*<Homepage/>*/}
+
           <Router>
               <Switch>
-                  <Route path="/sign-up" component={RegisterSporter}/>
-                  <Route path="/login" component={LoginSporter}/>
-                  <Route path="/profile/sporter" component={SporterProfile}/>
-                  <Route path="/sign-up/trainer" component={RegisterTrainer}/>
-                  <Route path="/login/trainer" component={LoginTrainer}/>
-                  <Route path="/profile/trainer" component={TrainerProfile}/>
+                  <Route path="/"><Homepage/></Route>
+                  <Route path="/signup"><RegisterForm/></Route>
+                  {/*<Route path="/signup-trainer" exact render={() => <RegisterTrainer/>}/>*/}
+                  <Route path="/login" component={LoginForm}/>
+                  <Route path="/trainer" component={Trainer}/>
+                  <Route path="/sporter" ><Sporter/></Route>
               </Switch>
           </Router>
 

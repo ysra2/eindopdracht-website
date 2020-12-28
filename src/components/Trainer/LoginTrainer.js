@@ -16,7 +16,7 @@ const LoginTrainer = (trainer) => {
                 loginDataT.passwordT
             );
             console.log(result.data);
-            trainer.history.push("/profile/trainer");
+            trainer.history.push("/profile-trainer");
         }
         catch (error) {
 

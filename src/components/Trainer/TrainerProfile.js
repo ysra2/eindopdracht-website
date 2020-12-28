@@ -2,13 +2,13 @@ import React from "react";
 import AuthService from "../../services/auth.service";
 
 const TrainerProfile = () => {
-    const currentTrainer = AuthService.getCurrentTrainer();
+    const currentTrainer = AuthService.getCurrentUser();
 
     return(
         <div>
             <header>
                 <h3>
-                    <strong>{currentTrainer.usernameT}</strong>
+                    <strong>{currentTrainer.username}</strong>
                 </h3>
             </header>
             <p>
@@ -19,7 +19,7 @@ const TrainerProfile = () => {
                 <strong>Id:</strong>{currentTrainer.id}
             </p>
             <p>
-                <strong>Email:</strong>{currentTrainer.emailT}
+                <strong>Email:</strong>{currentTrainer.email}
             </p>
             <strong>Authorities:</strong>
             <ul>
