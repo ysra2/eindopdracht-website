@@ -4,7 +4,6 @@ import Homepage from "./components/pages/Homepage";
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import RegisterTrainer from "./components/RegisterTrainer";
 import Trainer from "./components/pages/Sporter";
 import Sporter from "./components/pages/Trainer";
 
@@ -15,7 +14,6 @@ function App () {
       <div >
 
           {/*<Homepage/>*/}
-
           <Router>
               <Switch>
                   <Route path="/"><Homepage/></Route>

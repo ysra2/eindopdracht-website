@@ -13,15 +13,6 @@ const register = async (firstName, lastName, username, email, password, role) =>
     });
 };
 
-// const registerT = async (firstNameT, lastNameT, usernameT, emailT, passwordT) => {
-//     return await axios.post(API_URL + "signup", {
-//         firstNameT,
-//         lastNameT,
-//         usernameT,
-//         emailT,
-//         passwordT,
-//     });
-// };
 
 const login = async (username, password) => {
     return await axios
@@ -38,20 +29,6 @@ const login = async (username, password) => {
         });
 };
 
-// const loginT = async (usernameT, passwordT) => {
-//     return await axios
-//         .post(API_URL + "signin", {
-//             usernameT,
-//             passwordT,
-//         })
-//         .then((result) => {
-//             if (result.data.accessToken) {
-//                 localStorage.setItem("user_id", JSON.stringify(result.data));
-//             }
-//
-//             return result.data;
-//         });
-// };
 
 const logout = () => {
     localStorage.removeItem("user");

@@ -30,6 +30,7 @@ const LoginForm = (props) => {
     return(
         <div>
             <form>
+            <div>
                 <label>Email</label>
                 <input id="username" type="email" placeholder="Voer hier uw emailadres in"
                        value={(loginData.username)} onChange={loginChange}/>
@@ -37,13 +38,14 @@ const LoginForm = (props) => {
                 <label>Password</label>
                 <input id="password" type="current-password" placeholder="Voer hier uw wachtwoord in"
                        value={(loginData.password)} onChange={loginChange}/>
-            </form>
-            <form>
+            </div>
+            <div>
                 <input type="checkbox"/><span>Wachtwoord onthouden</span>
-            </form>
+            </div>
             <button onClick={loginSubmit}>
                 Login
             </button>
+            </form>
         </div>
     );
 }

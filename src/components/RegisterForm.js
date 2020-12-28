@@ -1,63 +1,70 @@
-import React, {useState} from "react";
-import Form from "./form";
-import Validate from "./validation";
+import React from "react";
+import useForm from "./useForm";
+import validate from "./validateRegister";
 
 
 const RegisterForm = () => {
-    const {registerChange, registerSubmit, formData, errors} = Form(Validate)
+    const {registerChange, formData, registerSubmit, errors} = useForm(submit, validate);
+
+    function submit() {
+        console.log("Succesvol geregistreerd");
+
+    }
 
     return (
-        <div>
-            <form onSubmit={registerSubmit}>
-                <label>Sporter</label>
-                <input id="sporter" type="checkbox" value={formData.role} onChange={registerChange}/>
-            </form>
-            <form>
-                <label>Trainer</label>
-                <input id="trainer" type="checkbox" value={formData.role} onChange={registerChange}/>
-            </form>
-            <form>
-                <label>Voornaam</label>
-                <input id="firstName" placeholder="Voornaam"
+        <div className="register-content-left">
+            <form className="register-form" onSubmit={registerSubmit} noValidate>
+            <div  className="register-form-input">
+                <label className="register-form-input">Sporter</label>
+                <div className="register-form-input" id="sporter"
+                        value={formData.role} onChange={registerChange}/>
+            </div>
+            <div className="register-form-input" >
+                <label className="register-form-input" >Voornaam</label>
+                <input className="register-form-input" id="firstName" placeholder="Voornaam"
+                       type="text"
                        value={formData.firstName} onChange={registerChange}/>
                        {errors.firstName && <p>{errors.firstName}</p>}
-            </form>
-            <form>
-                <label>Achternaam</label>
-                <input id="lastName" placeholder="Achternaam"
+            </div>
+            <div className="register-form-input">
+                <label className="register-form-input">Achternaam</label>
+                <input className="register-form-input" id="lastName" placeholder="Achternaam"
+                       type="text"
                        value={formData.lastName} onChange={registerChange}/>
                        {errors.lastName && <p>{errors.lastName}</p>}
-            </form>
-            <form>
-                <label>Gebruikersnaam</label>
-                <input id="username" placeholder="Gebruikersnaam"
+            </div>
+            <div className="register-form-input">
+                <label className="register-form-input" >Gebruikersnaam</label>
+                <input className="register-form-input" id="username" placeholder="Gebruikersnaam"
+                       type="text"
                        value={formData.username} onChange={registerChange}/>
                        {errors.username && <p>{errors.username}</p>}
-            </form>
-
-            <form>
-                <label>Email</label>
-                <input id="email" type="email" autoComplete="nope" placeholder="Voer hier uw emailadres in"
+            </div>
+            <div className="register-form-input" >
+                <label className="register-form-input" >Email</label>
+                <input className="register-form-input" id="email" type="email" autoComplete="nope" placeholder="Voer hier uw emailadres in"
                        value={formData.email} onChange={registerChange}/>
                        {errors.email && <p>{errors.email}</p>}
-            </form>
-            <form>
-                <label>Wachtwoord</label>
-                <input id="password" type="password" autoComplete="new-password"
+            </div>
+            <div className="register-form-input">
+                <label className="register-form-input">Wachtwoord</label>
+                <input className="register-form-input" id="password" type="password" autoComplete="new-password"
                        placeholder="Voer hier uw wachtwoord in"
                        value={formData.password} onChange={registerChange}/>
                        {errors.password && <p>{errors.password}</p>}
-            </form>
-            <form>
-                <label>Herhaal Wachtwoord</label>
-                <input id="password2" type="password2" autoComplete="password"
+            </div>
+            <div className="register-form-input">
+                <label className="register-form-input">Herhaal Wachtwoord</label>
+                <input className="register-form-input" id="password2" type="password" autoComplete="password"
                        placeholder="Voer hier uw wachtwoord in"
                        value={formData.password2} onChange={registerChange}/>
                        {errors.password2 && <p>{errors.password2}</p>}
-            </form>
-            <button type="submit" onClick={registerSubmit}>
+            </div >
+            <button className="register-form-Btn" type="submit" >
                 Registreer
             </button>
+                <span className="register-form-input-login" >Heb je al een account?<a href="/login">Klik hier</a></span>
+            </form>
         </div>
     )
 };
