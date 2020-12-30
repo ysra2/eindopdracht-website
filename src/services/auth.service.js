@@ -14,20 +14,27 @@ const register = async (firstName, lastName, username, email, password, role) =>
 };
 
 
-const login = async (username, password) => {
-    return await axios
-        .post(API_URL + "signin", {
-            username,
-            password,
-        })
-        .then((result) => {
-            if (result.data.accessToken) {
-                localStorage.setItem("user_id", JSON.stringify(result.data));
-            }
+const login = async (email, password) => {
+    try {
+        const token = JSON.parse(localStorage.getItem('user_id'));
+        //data in de state zetten
+        const result = await axios.post('http://localhost:8080/api/auth/signin',
+            {
+                headers: {"Authorization": `Bearer ` + token.accessToken},
+                email,
+                password,
+            });
+        console.log(result.data);
+        localStorage.setItem("token", JSON.stringify(result.accessToken));
+        localStorage.setItem("user_id", JSON.stringify(result.id));
+    }
+        // iets met die error doen
+    catch (error) {
+        console.log("Sorry.....Error");
 
-            return result.data;
-        });
-};
+    }
+
+}
 
 
 const logout = () => {
@@ -38,21 +45,10 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-const getCurrentTrainer = () => {
-    return JSON.parse(localStorage.getItem("trainer"));
-};
-
-const getCurrentSporter = () => {
-    return JSON.parse(localStorage.getItem("sporter"));
-};
 
 export default {
     register,
     login,
-    // registerT,
-    // loginT,
     logout,
     getCurrentUser,
-    getCurrentTrainer,
-    getCurrentSporter
 };
