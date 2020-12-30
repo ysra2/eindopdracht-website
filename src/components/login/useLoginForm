@@ -1,47 +1,36 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-const useForm = (callBack, validate) => {
+const useLoginForm = (callBack, validateLogin) => {
     // Register
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+    const [loginData, setLoginData] = useState({
         username: "",
-        email: "",
-        password: "",
-        password2: "",
-        role:  [" "]
-
+        password: ""
     })
 
 
     const [errors, setErrors] = useState({})
-
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-   const registerChange = event => {
+    const loginChange = event => {
         const {id, value} = event.target;
-        setFormData({
-            ...formData,
+        setLoginData({
+            ...loginData,
             [id]: value
         });
     };
 
 
-    const registerSubmit = async (event) => {
+    const loginSubmit = async (event) => {
         event.preventDefault();
 
-        setErrors(validate(formData));
+        setErrors(validateLogin(loginData));
 
         try {
             const result = await axios
                 .post('http://localhost:8080/api/auth/signup',{
-                    firstName: formData.firstName,
-                    lastName: formData.lastName,
-                    username: formData.username,
-                    email: formData.email,
-                    password: formData.password,
-                    role: formData.role
+                    username: loginData.username,
+                    password: loginData.password
                 });
             console.log(result);
             // // localStorage.setItem("token", JSON.stringify(result.data.accessToken));
@@ -51,25 +40,22 @@ const useForm = (callBack, validate) => {
         catch (error) {
 
         }
-
-        callBack();
-
         setIsSubmitting(true);
     };
 
     //useEffect checks of de errors veranderen
     useEffect(() => {
             //controleer of er geen errors zijn
-        if (Object.keys(errors).length === 0 && isSubmitting){
-            callBack();
-        }
-        //roep de callBack
+            if (Object.keys(errors).length === 0 && isSubmitting){
+                callBack();
+            }
+            //roep de callBack
         },
 
         //verander alleen als het object veranderd.
         [errors])
 
-    return {registerChange, formData, registerSubmit, errors};
+    return {loginChange, loginData, loginSubmit, errors};
 };
 
-export default useForm;
+export default useLoginForm;

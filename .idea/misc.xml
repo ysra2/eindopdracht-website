@@ -4,9 +4,9 @@
     <option name="languageLevel" value="JSX" />
   </component>
   <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/components/login/useLoginForm" />
     <file url="file://$PROJECT_DIR$/src/components/Sporter/LoginSporter.js" />
     <file url="file://$PROJECT_DIR$/src/components/Sporter/RegisterSporter.js" />
-    <file url="file://$PROJECT_DIR$/src/components/Sporter/SporterProfile.js" />
     <file url="file://$PROJECT_DIR$/src/components/Trainer/LoginTrainer.js" />
     <file url="file://$PROJECT_DIR$/src/components/Trainer/RegisterTrainer.js" />
     <file url="file://$PROJECT_DIR$/src/components/Trainer/TrainerProfile.js" />

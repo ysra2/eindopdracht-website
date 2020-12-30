@@ -1,10 +1,10 @@
 import React from "react";
 import useForm from "./useForm";
-import validate from "./validateRegister";
+import validate from "../validate/validateInfo";
 
 
 const RegisterForm = () => {
-    const {registerChange, formData, registerSubmit, errors} = useForm(submit, validate);
+    const {registerChange, formData, registerSubmit, errors, serverErrors, message, successful} = useForm(submit, validate);
 
     function submit() {
         console.log("Succesvol geregistreerd");
@@ -13,12 +13,14 @@ const RegisterForm = () => {
 
     return (
         <div className="register-content-left">
-            <form className="register-form" onSubmit={registerSubmit} noValidate>
-            <div  className="register-form-input">
-                <label className="register-form-input">Sporter</label>
-                <div className="register-form-input" id="sporter"
-                        value={formData.role} onChange={registerChange}/>
-            </div>
+            {/*{serverErrors && (*/}
+            {/*    <ul>{serverErrors.map((error) => (*/}
+            {/*        <li key={error}>{error}</li>*/}
+            {/*    ))}</ul>*/}
+            {/*)}*/}
+            <form className="register-form" id="sporter"
+                  value={formData.role}
+                  onSubmit={registerSubmit} noValidate>
             <div className="register-form-input" >
                 <label className="register-form-input" >Voornaam</label>
                 <input className="register-form-input" id="firstName" placeholder="Voornaam"
@@ -60,9 +62,19 @@ const RegisterForm = () => {
                        value={formData.password2} onChange={registerChange}/>
                        {errors.password2 && <p>{errors.password2}</p>}
             </div >
-            <button className="register-form-Btn" type="submit" >
+                    <button className="register-form-Btn" type="submit" onClick={registerSubmit}>
                 Registreer
             </button>
+                {message && (
+                    <div className="form-group">
+                        <div
+                            className={ successful ? "alert alert-success" : "alert alert-danger" }
+                            role="alert"
+                        >
+                            {message}
+                        </div>
+                    </div>
+                )}
                 <span className="register-form-input-login" >Heb je al een account?<a href="/login">Klik hier</a></span>
             </form>
         </div>

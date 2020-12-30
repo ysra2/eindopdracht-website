@@ -1,6 +1,6 @@
 import React from "react"
-import LoginForm from "../LoginForm";
-import RegisterForm from "../RegisterForm";
+import LoginForm from "../login/LoginForm";
+import RegisterForm from "../register/RegisterForm";
 
 function Trainer() {
     return(
