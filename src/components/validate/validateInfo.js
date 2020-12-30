@@ -1,6 +1,8 @@
-export default function validateRegister(formData){
+export default function validateInfo(formData){
     let errors = {}
 
+
+    //Register
     if (!formData.firstName.trim()){
         errors.firstName = "Veld mag niet leeg zijn";
     }
