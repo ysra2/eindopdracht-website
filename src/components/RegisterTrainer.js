@@ -1,8 +1,9 @@
 import React from "react";
 import useForm from "./useForm";
 
-const RegisterForm = () => {
-    const {handleChange, formData, handleSubmit} = useForm(submit);
+const RegisterTrainer = () => {
+    const {handleChange, formData, handleSubmitTrainer} = useForm(submit);
+
 
     function submit() {
         console.log("Succesvol geregistreerd");
@@ -10,7 +11,9 @@ const RegisterForm = () => {
 
     return(
         <div>
-            <form as="sporter" id="sporter" value={formData.role} onChange={handleChange}/>
+            <form>
+                <label>Trainer</label>
+            </form>
             <form>
                 <label>Voornaam</label>
                 <input id="firstName"  placeholder="Voornaam"
@@ -36,11 +39,11 @@ const RegisterForm = () => {
                 <input id="password" type="password" autoComplete="new-password" placeholder="Voer hier uw wachtwoord in"
                        value={formData.password} onChange={handleChange}/>
             </form>
-            <button type="submit" onClick={handleSubmit}>
-                Login
+            <button type="submit" onClick={handleSubmitTrainer}>
+                Registreer
             </button>
         </div>
     )
 }
 
-export default RegisterForm;
+export default RegisterTrainer;

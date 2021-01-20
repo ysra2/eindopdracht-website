@@ -8,15 +8,16 @@ const Profile = () => {
         <div>
             <header>
                 <h3>
-                   h <strong>{currentUser.id.username}</strong>
+                   <strong>{currentUser.username}</strong>
+                    Profile
                 </h3>
             </header>
             <p>
-                <strong>Token:</strong>{currentUser.id.accessToken.substring(0,20)} ...{" "}
-                {currentUser.id.accessToken.substr(currentUser.id.accessToken.length -20)}
+                <strong>Token:</strong>{currentUser.accessToken.substring(0,20)} ...{" "}
+                {currentUser.accessToken.substr(currentUser.accessToken.length -20)}
             </p>
             <p>
-                <strong>Id:</strong>{currentUser.id.id}
+                <strong>Id:</strong>{currentUser.id}
             </p>
             <p>
                 <strong>Email:</strong>{currentUser.email}
