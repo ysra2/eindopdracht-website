@@ -8,8 +8,9 @@ const Profile = () => {
         <div>
             <header>
                 <h3>
-                   <strong>{currentUser.username}</strong>
-                    Profile
+                    Profile:
+                    <strong>{currentUser.firstName}</strong>
+
                 </h3>
             </header>
             <p>
@@ -20,7 +21,7 @@ const Profile = () => {
                 <strong>Id:</strong>{currentUser.id}
             </p>
             <p>
-                <strong>Email:</strong>{currentUser.email}
+                <strong>Email:</strong>{currentUser.username}
             </p>
             <strong>Authorities:</strong>
             <ul>

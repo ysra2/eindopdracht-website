@@ -4,19 +4,15 @@ import authHeader from "./auth-header";
 const API_URL = "http://localhost:8080/api/test/";
 
 const getPublicContent = () => {
-    return axios.get(API_URL + "all");
+    return axios.get(API_URL + "/test/all");
 };
 
 const getUserBoard = () => {
-    return axios.get(API_URL + "user", { headers: authHeader() });
+    return axios.get(API_URL + "user_id", { headers: authHeader() });
 };
 
-const getSporterBoard = () => {
-    return axios.get(API_URL + "sporter", { headers: authHeader() });
-};
-
-const getTrainerBoard = () => {
-    return axios.get(API_URL + "trainer", { headers: authHeader() });
+const setActivity = () => {
+    return axios.post(API_URL + "user_id", { headers: authHeader() });
 };
 
 const getAdminBoard = () => {
@@ -26,7 +22,7 @@ const getAdminBoard = () => {
 export default {
     getPublicContent,
     getUserBoard,
-    getSporterBoard,
-    getTrainerBoard,
+    setActivity,
     getAdminBoard,
 };
+

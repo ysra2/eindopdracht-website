@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import AuthService from "../services/auth.service";
 
-const useForm = (callBack, validate) => {
+const useForm = (callBack, validate, props) => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -11,8 +11,6 @@ const useForm = (callBack, validate) => {
         password2: ""
     })
 
-
-
     const [errors, setErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [serverErrors, setServerErrors] = useState({});
@@ -21,16 +19,15 @@ const useForm = (callBack, validate) => {
 
     const handleChange = event => {
         const {id, value} = event.target;
-        if (setFormData({
+        (setFormData({
             ...formData,
             [id]: value
         }));
     };
 
-
     const handleSubmitTrainer = (event) => {
         event.preventDefault();
-        // setErrors(validate(formData));
+        setErrors(validate(formData));
 
         setMessage("");
         setSuccessful(true);
@@ -50,7 +47,7 @@ const useForm = (callBack, validate) => {
                 console.log(response);
                 setMessage(response.data.message);
                 setSuccessful(true);
-            } ,
+            },
 
             (error) => {
                 const resMessage =
@@ -76,10 +73,9 @@ const useForm = (callBack, validate) => {
 
     };
 
-
     const handleSubmitSporter = (event) => {
         event.preventDefault();
-        // setErrors(validate(formData));
+        setErrors(validate(formData));
 
         setMessage("");
         setSuccessful(true);
@@ -125,6 +121,7 @@ const useForm = (callBack, validate) => {
 
     };
 
+
     //useEffect checks of de errors veranderen
     useEffect(() => {
             //controleer of er geen errors zijn
@@ -137,7 +134,7 @@ const useForm = (callBack, validate) => {
         //verander alleen als het object veranderd.
         [errors])
 
-    return {handleChange, formData, handleSubmitTrainer, handleSubmitSporter, errors};
+    return {handleChange, formData, handleSubmitTrainer, handleSubmitSporter, errors, message};
 };
 
 export default useForm;

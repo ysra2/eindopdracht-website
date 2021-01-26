@@ -1,11 +1,14 @@
 import React from "react";
 import './styles/style.sass';
-import Homepage from "./components/Homepage";
+import Homepage from "./pages/Homepage";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import RegisterTrainer from "./components/RegisterTrainer";
-import RegisterSporter from "./components/RegisterSporter";
+import RegisterTrainer from "./components/Register/RegisterTrainer";
+import RegisterSporter from "./components/Register/RegisterSporter";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import TrainerPage from "./pages/TrainerPage";
+
+
 
 function App () {
 
@@ -16,12 +19,17 @@ function App () {
           <nav>
 
           </nav>
+          <div></div>
           <Router>
               <Switch>
                   <Route path="/registreer/trainer" component={RegisterTrainer}/>
                   <Route path="/registreer/sporter" component={RegisterSporter}/>
                   <Route path="/login" component={Login}/>
-                  <Route exact path="/profile" component={Profile}/>
+                  <Route path="/profile" component={Profile}/>
+                  <Route path="/trainer">
+                      <TrainerPage/>
+                  </Route>
+
               </Switch>
           </Router>
       </div>
