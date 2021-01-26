@@ -26,18 +26,10 @@ const AddActivity = () => {
 
     const createActivity =  async () => {
 
-        const token = JSON.parse(localStorage.getItem('user_id'))
-
-        const config = {
-            headers: {  Authorization: 'Bearer ' + token.accessToken }
-        };
-
-        const trainerId = authHeader();
+        const trainerId = authHeader().id;
         console.log(trainerId);
-        return axios.post(`/activity/${trainerId.id}`
-            ,
-
-            addActivity, config)
+        return axios.post(`/activity/${trainerId}`,
+            addActivity, authHeader)
             .then((addActivity) =>{
                 console.log(addActivity);
             })
