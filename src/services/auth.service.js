@@ -3,12 +3,12 @@ import axios from "./axios.instance";
 const registerSporter = async (firstName, lastName, username, email, password) => {
     return await axios
         .post(  "auth/signup", {
-        firstName,
-        lastName,
-        username,
-        email,
-        password,
-        role: ["sporter"]
+            firstName,
+            lastName,
+            username,
+            email,
+            password,
+            role: ["sporter"]
 
     });
 };

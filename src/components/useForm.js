@@ -34,14 +34,7 @@ const useForm = (callBack, validate, props) => {
 
 
         AuthService.registerTrainer(
-
-
-            formData.firstName,
-            formData.lastName,
-            formData.username,
-            formData.email,
-            formData.password,
-            formData.role
+            formData
         ).then(
             (response) =>{
                 console.log(response);
@@ -80,10 +73,10 @@ const useForm = (callBack, validate, props) => {
         setMessage("");
         setSuccessful(true);
 
-
+//Het is freemd dat ik niet dubbel gebruik kan maken van de state formData zelf.
+// Het lijkt alsof de server het niet accepteert en het geeft een error 400.
+        //Hierdoor moet ik specifiek in de data weergeven dat het om bijv formData.firstName gaat
         AuthService.registerSporter(
-
-
             formData.firstName,
             formData.lastName,
             formData.username,
