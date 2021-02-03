@@ -7,6 +7,9 @@
     <file url="file://$PROJECT_DIR$/src/components/Sporter/SporterProfile.js" />
     <file url="file://$PROJECT_DIR$/src/components/Trainer/TrainerProfile.js" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/services/user.service.js" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

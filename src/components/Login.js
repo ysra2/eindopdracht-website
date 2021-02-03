@@ -1,29 +1,43 @@
 import React from "react";
 import useForm from "./useForm";
-import AuthService from "../services/auth.service";
+import validate from "./validateInfo";
+import AuthService from "../services/auth.service"
 
-const Login = (props) => {
-    const {handleChange, formData, errors,} = useForm(submit());
+const Login = ({history}) => {
+    const {handleChange, formData, errors, setSuccessful, setErrors, setMessage} =
+        useForm(submit, validate);
 
-
-    const loginSubmit = () =>{
-            AuthService.login(
-                formData.username,
-                formData.password
-            ).then(
-                (response) => {
-                    console.log(response);
-                    props.history.push('/profile');
-                });
-    };
 
     function submit() {
         console.log("Succesvol geregistreerd");
     }
 
+    const loginSubmit = (event) => {
+        event.preventDefault();
+        setErrors(validate(formData));
+
+        setMessage("");
+        setSuccessful(true);
+
+
+        AuthService.login(
+            formData.username,
+            formData.password,
+        ).then(
+            (response) => {
+                console.log(response);
+                history.push('/profile');
+                setSuccessful(true);
+            });
+
+    };
+
     return(
         <div>
             <form/>
+            <div>
+                Inloggen
+            </div>
             <div>
                 <label>Email</label>
                 <input id="username" type="email" placeholder="Voer hier uw emailadres in"
@@ -32,62 +46,19 @@ const Login = (props) => {
             </div>
             <div>
                 <label>Password</label>
-                <input id="password" type="current-password" placeholder="Voer hier uw wachtwoord in"
+                <input id="password" type="password" placeholder="Voer hier uw wachtwoord in"
                        value={formData.password} onChange={handleChange}/>
                 {errors.password && <p>{errors.password}</p>}
             </div>
             <div>
                 <input type="checkbox"/><span>Wachtwoord onthouden</span>
             </div>
-            <div>
-            <button onClick={loginSubmit} >
+            <button type="submit"  onClick={loginSubmit} >
                 Login
             </button>
-            </div>
+
         </div>
     )
 }
 
 export default Login;
-
-// const loginSubmit = (event) => {
-//     event.preventDefault();
-//     setErrors(validate(formData));
-//
-//     setMessage("");
-//     setSuccessful(true);
-//
-//
-//     AuthService.login(
-//         formData.username,
-//         formData.password,
-//     ).then(
-//         (response) => {
-//             console.log(response);
-//             props.history.push('/profile');
-//             setSuccessful(true);
-//         } ,
-//
-//         (error) => {
-//             const resMessage =
-//                 (error.response &&
-//                     error.response.data &&
-//                     error.response.data.message) ||
-//                 error.message ||
-//                 error.toString();
-//
-//             setMessage(resMessage);
-//             setSuccessful(false);
-//         });
-//
-//
-//     if (formData.errors){
-//         setServerErrors(formData.errors);
-//     } else{
-//         console.log("Gelukt!")
-//     }
-//     setServerErrors("")
-//
-//     setIsSubmitting(true);
-//
-// };

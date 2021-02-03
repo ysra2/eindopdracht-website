@@ -48,6 +48,9 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user_id"));
 };
 
+const getCurrentActivity = () => {
+    return JSON.parse(localStorage.getItem("activity_id"));
+};
 
 
 export default {
@@ -56,4 +59,5 @@ export default {
     login,
     logout,
     getCurrentUser,
+    getCurrentActivity
 };
