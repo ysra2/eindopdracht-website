@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import Maps from "../components/Maps";
 
 function Homepage() {
     return(
@@ -9,6 +10,7 @@ function Homepage() {
                     <button>Home</button>
                 </Link>
             </header>
+            <Maps/>
         </div>
     )
 
