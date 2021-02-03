@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "../../services/axios.instance"
 import authActivity from "../../services/auth-activity";
 
-const DeleteActivity = ({history}) => {
+const DeleteActivity = (props) => {
 
     // const [deleteActivity, setDeleteActivity] = useState([]);
 
@@ -12,8 +12,9 @@ const DeleteActivity = ({history}) => {
             .then(response => {
                 localStorage.removeItem("activity_id")
                 console.log(response.data);
-                history.push("/trainer")
-            }).catch(e => (
+            }).then(
+            // props.history.push("/trainer")
+        ).catch(e => (
             console.log(e)
         ))
     }
