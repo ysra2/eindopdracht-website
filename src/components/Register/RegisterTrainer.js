@@ -3,7 +3,7 @@ import useForm from "../useForm";
 import validate from "../validateInfo";
 
 const RegisterTrainer = () => {
-    const {handleChange, formData, handleSubmitTrainer, errors} =
+    const {handleChange, formData, handleSubmitTrainer, errors, successful, message} =
         useForm(submit, validate);
 
 
@@ -11,11 +11,13 @@ const RegisterTrainer = () => {
         console.log("Succesvol geregistreerd");
     }
 
+
     return(
         <div>
-            <form>
+            <form/>
                 <label>Trainer</label>
-            </form>
+            {!successful && (
+                <div>
             <form>
                 <label>Voornaam</label>
                 <input id="firstName"  placeholder="Voornaam"
@@ -43,12 +45,17 @@ const RegisterTrainer = () => {
             <form>
                 <label>Wachtwoord</label>
                 <input id="password" type="password" autoComplete="new-password" placeholder="Voer hier uw wachtwoord in"
-                       value={formData.password} onChange={handleChange}/>
+                       value={formData.password} onChange={handleChange} />
                 {errors.password && <p>{errors.password}</p>}
             </form>
             <button type="submit" onClick={handleSubmitTrainer}>
                 Registreer
             </button>
+                </div>
+                )}
+            {!message && (
+                <div>{message}</div>
+            )}
         </div>
     )
 }

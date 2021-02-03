@@ -43,7 +43,7 @@ const RegisterSporter = () => {
             <form>
                 <label>Wachtwoord</label>
                 <input id="password" type="password" autoComplete="new-password" placeholder="Voer hier uw wachtwoord in"
-                       value={formData.password} onChange={handleChange}/>
+                       value={formData.password} onChange={handleChange} />
                 {errors.password && <p>{errors.password}</p>}
             </form>
             <button type="submit" onClick={handleSubmitSporter}>

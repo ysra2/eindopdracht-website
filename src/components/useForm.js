@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import AuthService from "../services/auth.service";
 
-const useForm = (callBack, validate, props) => {
+const useForm = (callBack, validate) => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         username: "",
         email: "",
         password: "",
-        password2: ""
+        // password2: ""
     })
 
     const [errors, setErrors] = useState({})
@@ -34,7 +34,12 @@ const useForm = (callBack, validate, props) => {
 
 
         AuthService.registerTrainer(
-            formData
+            formData.firstName,
+            formData.lastName,
+            formData.username,
+            formData.email,
+            formData.password,
+            formData.role
         ).then(
             (response) =>{
                 console.log(response);
@@ -57,8 +62,9 @@ const useForm = (callBack, validate, props) => {
 
         if (formData.errors){
             setServerErrors(formData.errors);
+            console.log("Unsuccessfully registered")
         } else{
-            console.log("Gelukt!")
+            console.log("Successfully registered")
         }
         setServerErrors("")
 
@@ -105,8 +111,9 @@ const useForm = (callBack, validate, props) => {
 
         if (formData.errors){
             setServerErrors(formData.errors);
+            console.log("Unsuccessfully registered")
         } else{
-            console.log("Gelukt!")
+            console.log("Successfully registered")
         }
         setServerErrors("")
 
@@ -114,6 +121,37 @@ const useForm = (callBack, validate, props) => {
 
     };
 
+
+    // const loginSubmit = (props) =>{
+    //     AuthService.login(
+    //         formData.username,
+    //         formData.password
+    //     ).then(
+    //         (response) => {
+    //             console.log(response);
+    //             props.history.push('/profile');
+    //             },
+    //
+    //         (error) => {
+    //             const resMessage =
+    //                 (error.response &&
+    //                     error.response.data &&
+    //                     error.response.data.message) ||
+    //                 error.message ||
+    //                 error.toString();
+    //
+    //             setMessage(resMessage);
+    //             setSuccessful(false);
+    //         });
+    //     if (formData.errors){
+    //         setServerErrors(formData.errors);
+    //     } else{
+    //         console.log("error")
+    //     }
+    //     setServerErrors("")
+    //
+    //     setIsSubmitting(true);
+    // };
 
     //useEffect checks of de errors veranderen
     useEffect(() => {
@@ -127,7 +165,13 @@ const useForm = (callBack, validate, props) => {
         //verander alleen als het object veranderd.
         [errors])
 
-    return {handleChange, formData, handleSubmitTrainer, handleSubmitSporter, errors, message};
+    return {handleChange,
+        formData,
+        handleSubmitTrainer,
+        handleSubmitSporter,
+        errors,
+        message,
+        successful, setSuccessful, setErrors, setMessage};
 };
 
 export default useForm;

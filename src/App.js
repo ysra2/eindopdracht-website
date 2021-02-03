@@ -7,6 +7,9 @@ import RegisterSporter from "./components/Register/RegisterSporter";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import TrainerPage from "./pages/TrainerPage";
+import AddActivity from "./components/Activity/AddActivity";
+import UpdateActivity from "./components/Activity/UpdateActivity";
+import Activity from "./components/Activity/Activity";
 
 
 
@@ -16,20 +19,16 @@ function App () {
     return (
       <div >
           <Homepage/>
-          <nav>
-
-          </nav>
-          <div></div>
           <Router>
               <Switch>
                   <Route path="/registreer/trainer" component={RegisterTrainer}/>
                   <Route path="/registreer/sporter" component={RegisterSporter}/>
                   <Route path="/login" component={Login}/>
                   <Route path="/profile" component={Profile}/>
-                  <Route path="/trainer">
-                      <TrainerPage/>
-                  </Route>
-
+                  <Route path="/trainer" component={TrainerPage}/>
+                  <Route path ="/add" component={AddActivity}/>
+                  <Route path="/update" component={UpdateActivity}/>
+                  <Route path="/activiteit" component={Activity}/>
               </Switch>
           </Router>
       </div>
