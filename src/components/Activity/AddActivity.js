@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from "react"
-import axios from "../services/axios.instance"
-import authHeader from "../services/auth-header";
+import React, {useState} from "react"
+import axios from "../../services/axios.instance"
+import authHeader from "../../services/auth-header";
 
 
 
-const AddActivity = () => {
+
+
+const AddActivity = ({history}) => {
+
     const [addActivity, setAddActivity] = useState({
         activityName: "",
         nameTrainer: "",
         location: "",
         date: "",
         time: ""});
+    const [activityId, setActivityId] = useState(undefined);
 
     const activityChange = event => {
         const {id, value} = event.target;
@@ -20,27 +24,30 @@ const AddActivity = () => {
         }));
     };
 
-    useEffect(() =>{
-
-    },[])
-
-    const createActivity =  async () => {
+    const createActivity =  async event => {
+        event.preventDefault();
 
         const trainerId = authHeader().id;
+
         console.log(trainerId);
-        return axios.post(`/activity/${trainerId}`,
-            addActivity, authHeader)
-            .then((addActivity) =>{
-                console.log(addActivity);
+        return axios.post(`activity/${trainerId}`, addActivity)
+            .then((result) => {
+                if (trainerId === trainerId) {
+                    localStorage.setItem("activity_id", JSON.stringify(result.data));
+                }
+                console.log(result)
+                history.push('/activiteit')
             })
             .catch((error) => {
             console.log(error);
-            });
+            })
+
+
     }
+
 
     return(
         <div>
-
             <form/>
             <div>
                 <label>Sportactiviteit</label>
@@ -72,8 +79,12 @@ const AddActivity = () => {
                        value={addActivity.date} onChange={activityChange}/>
 
             </div>
-            <button onClick={createActivity} >
+            <button type="submit" onClick={createActivity} >
                 Submit
+            </button>
+            {' '}
+            <button type="reset" >
+                Reset
             </button>
         </div>
     )

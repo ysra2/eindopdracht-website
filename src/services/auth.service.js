@@ -48,7 +48,10 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user_id"));
 };
 
-
+const getCurrentActivity = () => {
+    return JSON.parse(localStorage.getItem("activity_id"));
+    return JSON.parse(localStorage.getItem("activities"));
+};
 
 export default {
     registerTrainer,
@@ -56,4 +59,5 @@ export default {
     login,
     logout,
     getCurrentUser,
+    getCurrentActivity
 };
