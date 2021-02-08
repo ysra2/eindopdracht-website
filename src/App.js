@@ -1,6 +1,6 @@
 import React from "react";
-import './styles/style.sass';
-import Homepage from "./pages/Homepage";
+import './styles/style.scss';
+import NavBar from "./pages/NavBar";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import RegisterTrainer from "./components/Register/RegisterTrainer";
 import RegisterSporter from "./components/Register/RegisterSporter";
@@ -18,7 +18,7 @@ function App () {
 
     return (
       <div >
-          <Homepage/>
+          <NavBar/>
           <nav>
 
           </nav>
