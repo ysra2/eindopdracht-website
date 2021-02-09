@@ -1,15 +1,17 @@
 import React from "react";
 import './styles/style.scss';
-import NavBar from "./pages/NavBar";
+import NavBar from "./components/NavBar";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import RegisterTrainer from "./components/Register/RegisterTrainer";
-import RegisterSporter from "./components/Register/RegisterSporter";
+import RegisterTrainer from "./components/register/RegisterTrainer";
+import RegisterSporter from "./components/register/RegisterSporter";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import TrainerPage from "./pages/TrainerPage";
-import AddActivity from "./components/Activity/AddActivity";
-import ActivityProfile from "./components/Activity/ActivityProfile";
-import UpdateActivity from "./components/Activity/UpdateActivity";
+import AddActivity from "./components/activity/AddActivity";
+import ActivityProfile from "./components/activity/ActivityProfile";
+import UpdateActivity from "./components/activity/UpdateActivity";
+import HomePage from "./pages/HomePage";
+import Maps from "./components/Maps";
 
 
 
@@ -19,12 +21,10 @@ function App () {
     return (
       <div >
           <NavBar/>
-          <nav>
 
-          </nav>
-          <div></div>
           <Router>
               <Switch>
+                  <Route exact path="/"><HomePage/></Route>
                   <Route path="/registreer/trainer" component={RegisterTrainer}/>
                   <Route path="/registreer/sporter" component={RegisterSporter}/>
                   <Route path="/login" component={Login}/>
@@ -32,8 +32,8 @@ function App () {
                   <Route path="/add" component={AddActivity}/>
                   <Route path="/activiteit" component={ActivityProfile}/>
                   <Route path="/update" component={UpdateActivity}/>
-
                   <Route path="/trainer"><TrainerPage/></Route>
+                  <Route path="/map"><Maps/></Route>
               </Switch>
           </Router>
       </div>

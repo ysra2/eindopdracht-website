@@ -1,13 +1,13 @@
 import React, {useCallback, useRef, useState} from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow,} from "@react-google-maps/api";
 import usePlacesAutocomplete, {getGeocode } from "use-places-autocomplete";
-import ActivityProfile from "./Activity/ActivityProfile";
+import ActivityProfile from "./activity/ActivityProfile";
 
 
 // import mapStyles from "./mapStyles"
 
 const mapContainerStyle = {
-    width: "45.85vw" ,
+    // width: "100%" ,
     height: "70vh",
 };
 
