@@ -13,50 +13,53 @@ const RegisterTrainer = () => {
 
 
     return(
-        <div>
-            <form/>
-            <label>Trainer</label>
+        <div className="form-page">
+            <form className="form">
+            <label className="title">Trainer</label>
             {!successful && (
                 <div>
-                    <form>
+                    <div >
                         <label>Voornaam</label>
-                        <input id="firstName"  placeholder="Voornaam"
+                        <input id="firstName" type="text" placeholder="Voornaam"
                                value={formData.firstName} onChange={handleChange}/>
                         {errors.firstName && <p>{errors.firstName}</p>}
-                    </form>
-                    <form>
+                    </div>
+                    <div >
                         <label>Achternaam</label>
-                        <input id="lastName"  placeholder="Achternaam"
+                        <input id="lastName" type="text" placeholder="Achternaam"
                                value={formData.lastName} onChange={handleChange}/>
                         {errors.lastName && <p>{errors.lastName}</p>}
-                    </form>
-                    <form>
+                    </div>
+                    <div >
                         <label>Gebruikersnaam</label>
-                        <input id="username"  placeholder="Gebruikersnaam"
+                        <input id="username" type="text" placeholder="Gebruikersnaam"
                                value={formData.username} onChange={handleChange}/>
                         {errors.username && <p>{errors.username}</p>}
-                    </form>
-                    <form>
+                    </div>
+                    <div >
                         <label>Email</label>
                         <input id="email" type="email" autoComplete="nope" placeholder="Voer hier uw emailadres in"
                                value={formData.email} onChange={handleChange}/>
                         {errors.email && <p>{errors.email}</p>}
-                    </form>
-                    <form>
+                    </div>
+                    <div>
                         <label>Wachtwoord</label>
                         <input id="password" type="password" autoComplete="new-password" placeholder="Voer hier uw wachtwoord in"
                                value={formData.password} onChange={handleChange} />
                         {errors.password && <p>{errors.password}</p>}
-                    </form>
-                    <button type="submit" onClick={handleSubmitTrainer}>
+                    </div >
+                    <button type="submit" className="register-button" onClick={handleSubmitTrainer}>
                         Registreer
                     </button>
+
                 </div>
             )}
             {!message && (
                 <div>{message}</div>
             )}
+            </form>
         </div>
+
     )
 }
 

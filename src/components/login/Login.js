@@ -1,7 +1,7 @@
 import React from "react";
-import useForm from "./useForm";
-import validate from "./validateInfo";
-import AuthService from "../services/auth.service"
+import useForm from "../useForm";
+import validate from "../validateInfo";
+import AuthService from "../../services/auth.service"
 
 const Login = ({history}) => {
     const {handleChange, formData, errors, setSuccessful, setErrors, setMessage} =
@@ -26,20 +26,20 @@ const Login = ({history}) => {
         ).then(
             (response) => {
                 console.log(response);
-                history.push('/profile');
+                history.push('/profile/sporter');
                 setSuccessful(true);
             });
 
     };
 
     return(
-        <div>
-            <form/>
-            <div>
+        <div className="form-page">
+            <form className="form">
+            <label className="title">
                 Inloggen
-            </div>
+            </label>
             <div>
-                <label>Email</label>
+                <label >Email</label>
                 <input id="username" type="email" placeholder="Voer hier uw emailadres in"
                        value={formData.username} onChange={handleChange}/>
                 {errors.username && <p>{errors.username}</p>}
@@ -50,13 +50,13 @@ const Login = ({history}) => {
                        value={formData.password} onChange={handleChange}/>
                 {errors.password && <p>{errors.password}</p>}
             </div>
-            <div>
-                <input type="checkbox"/><span>Wachtwoord onthouden</span>
-            </div>
+            {/*<div>*/}
+            {/*    <input type="checkbox"/><span>Wachtwoord onthouden</span>*/}
+            {/*</div>*/}
             <button type="submit"  onClick={loginSubmit} >
                 Login
             </button>
-
+            </form>
         </div>
     )
 }

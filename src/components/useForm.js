@@ -122,6 +122,8 @@ const useForm = (callBack, validate) => {
     };
 
 
+
+
     //useEffect checks of de errors veranderen
     useEffect(() => {
             //controleer of er geen errors zijn
