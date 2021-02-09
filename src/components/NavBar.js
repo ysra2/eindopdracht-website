@@ -23,7 +23,13 @@ function NavBar() {
                         <li><a href="/" className="active">Home</a></li>
                         <li><a href="/">About</a></li>
                         <li><a href="/">Contact</a></li>
-                        <li><a href="/login">Login</a></li>
+                        <li className="dropdown">
+                            <a href={null}>Login</a>
+                            <div  className="dropdown-content">
+                                <a href="/login/trainer" >Trainer</a>
+                                <a href="/login">Sporter</a>
+                            </div>
+                        </li>
                     </div>
                 </ul>
             </header>

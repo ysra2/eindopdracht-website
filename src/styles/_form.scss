@@ -1,3 +1,7 @@
+//body{
+//  background: $primaryBtn;
+//}
+
 .form-page {
   width: 500px;
   padding: 8% 0 0;
@@ -11,6 +15,7 @@
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   text-transform: uppercase;
+  //background: ;
 }
 
 label.title{
@@ -38,14 +43,13 @@ label.title{
 }
 
 .form button {
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: $primaryBgc;
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #FFFFFF;
+  color: black;
   font-size: 14px;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -53,7 +57,7 @@ label.title{
 }
 
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: $primaryBtn;
 }
 
 
