@@ -1,14 +1,14 @@
 *{
+  font-family: Arial;
+}
+
+header {
+  background: $primaryBgc;
   padding: 0;
   margin: 0;
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
-}
-
-header {
-  font-family: Arial;
-  background: $primaryBgc;
 
 
   ul {
