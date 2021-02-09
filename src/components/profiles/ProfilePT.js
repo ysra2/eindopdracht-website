@@ -1,7 +1,7 @@
 import React from "react";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
-const Profile = () => {
+const ProfilePT = () => {
     const currentUser = AuthService.getCurrentUser();
 
     return(
@@ -26,10 +26,10 @@ const Profile = () => {
             <strong>Authorities:</strong>
             <ul>
                 {currentUser.roles &&
-                    currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+                currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
             </ul>
         </div>
     );
 };
 
-export default Profile;
+export default ProfilePT;
