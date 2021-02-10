@@ -23,7 +23,6 @@ function App () {
     return (
       <div >
           <NavBar/>
-
           <Router>
               <Switch>
                   <Route exact path="/"><HomePage/></Route>

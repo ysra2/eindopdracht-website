@@ -1,9 +1,11 @@
 import React from 'react';
+import logo from "./assets/Logo.png"
 
 function NavBar() {
     return(
         <div >
-            <header>
+            <header className="header">
+                <nav className="navbar">
                     <input type="checkbox" id="check"/>
                     <label htmlFor="check" className="checkBtn" >
                             <div className="menu-icon"/>
@@ -11,29 +13,18 @@ function NavBar() {
                             <div className="menu-icon"/>
                     </label>
                 {/*//Hier komt nog een image dat hetzelfde is als een home button*/}
-                <label className="nav-logo" >
-                    TRAIN FAST
-                </label>
+                    <img src={logo} alt="trainfast" className="logo"/>
                 <ul>
-                    {/*<form>*/}
-                    {/*    <input type="search" className="search-bar" />*/}
-                    {/*    <button>Zoek</button>*/}
-                    {/*</form>*/}
                     <div className="nav-logo">
                         <li><a href="/" className="active">Home</a></li>
                         <li><a href="/">About</a></li>
                         <li><a href="/">Contact</a></li>
-                        <li className="dropdown">
-                            <a href={null}>Login</a>
-                            <div  className="dropdown-content">
-                                <a href="/login/trainer" >Trainer</a>
-                                <a href="/login">Sporter</a>
-                            </div>
-                        </li>
+                        <li><a href="/login/trainer">Trainer</a></li>
+                        <li><a href="/login">Sporter</a></li>
                     </div>
                 </ul>
+                </nav>
             </header>
-            <nav/>
         </div>
     )
 
