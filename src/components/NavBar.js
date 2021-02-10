@@ -33,7 +33,7 @@ function NavBar() {
                     </div>
                 </ul>
             </header>
-            <nav></nav>
+            <nav/>
         </div>
     )
 

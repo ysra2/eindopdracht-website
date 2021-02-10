@@ -8,7 +8,8 @@ const ActivityProfile = () => {
     const currentActivity = AuthService.getCurrentActivity()
 
     return(
-        <div>
+        <div className="form-page">
+            <div className="form">
             <h3>
                 Sportactiviteit
             </h3>
@@ -52,6 +53,7 @@ const ActivityProfile = () => {
                 <Link to="trainer/add">Terug</Link>
             </button>
             <DeleteActivity/>
+        </div>
         </div>
     );
 };

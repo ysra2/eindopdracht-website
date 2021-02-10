@@ -68,12 +68,13 @@ const UpdateActivity = (props) => {
 
     }
 
-
-
     return(
         <div>
-
-            <form/>
+            <div className="form-page">
+                <form className="form">
+                    <label className="title">
+                        Training wijzigen
+                    </label>
             <div>
                 <label>Sportactiviteit</label>
                 <input id="activityName"  placeholder="Sportactiviteit"
@@ -107,6 +108,8 @@ const UpdateActivity = (props) => {
             <button onClick={creatActivity}>
                 Wijzig sportactiviteit
             </button>
+                </form>
+            </div>
         </div>
     )
 }

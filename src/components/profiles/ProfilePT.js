@@ -5,14 +5,13 @@ const ProfilePT = () => {
     const currentUser = AuthService.getCurrentUser();
 
     return(
-        <div>
-            <header>
-                <h3>
+        <div className="form-page">
+            <div className="form">
+                <h3 >
                     Profile:
-                    <strong>{currentUser.firstName}</strong>
-
+                    <strong>{currentUser.username}</strong>
                 </h3>
-            </header>
+            </div>
             <p>
                 <strong>Token:</strong>{currentUser.accessToken.substring(0,20)} ...{" "}
                 {currentUser.accessToken.substr(currentUser.accessToken.length -20)}

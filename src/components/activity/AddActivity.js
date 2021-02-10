@@ -2,12 +2,7 @@ import React, {useState} from "react"
 import axios from "../../services/axios.instance"
 import authHeader from "../../services/auth-header";
 
-
-
-
-
 const AddActivity = ({history}) => {
-
     const [addActivity, setAddActivity] = useState({
         activityName: "",
         nameTrainer: "",
@@ -46,8 +41,11 @@ const AddActivity = ({history}) => {
 
 
     return(
-        <div>
-            <form/>
+        <div className="form-page">
+            <form className="form">
+                <label className="title">
+                    Training
+                </label>
             <div>
                 <label>Sportactiviteit</label>
                 <input id="activityName"  placeholder="Sportactiviteit"
@@ -85,6 +83,7 @@ const AddActivity = ({history}) => {
             <button type="reset" >
                 Reset
             </button>
+            </form>
         </div>
     )
 }
