@@ -26,7 +26,7 @@ const LoginPT = ({history}) => {
         ).then(
             (response) => {
                 console.log(response);
-                history.push('/profile/trainer');
+                history.push('/profile');
                 setSuccessful(true);
             });
 

@@ -2,11 +2,13 @@ import React from 'react';
 import trainer from "../components/assets/tennis.jpg"
 import sporter from "../components/assets/boksen.jpg"
 import {Link} from "react-router-dom";
+import Footer from "../components/Footer";
 
 
 function HomePage() {
 
     return(
+        <div>
         <div className="row">
             <div className="column">
                 <div className="container">
@@ -29,6 +31,10 @@ function HomePage() {
                 </div>
             </div>
         </div>
+        <div>
+            <Footer/>
+        </div>
+    </div>
     )
 }
 export default HomePage;

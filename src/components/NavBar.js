@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from "./assets/Logo.png"
+import {Link} from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 function NavBar() {
+    const [currentUser, setCurrentUser] = useState(undefined)
+
+    useEffect(()=>{
+        const user = AuthService.getCurrentUser();
+            setCurrentUser(user)
+    }, [])
+
+    const logOut = () =>{
+        AuthService.logout()
+    }
+
+
     return(
         <div >
             <header className="header">
@@ -14,15 +28,34 @@ function NavBar() {
                     </label>
                 {/*//Hier komt nog een image dat hetzelfde is als een home button*/}
                     <img src={logo} alt="trainfast" className="logo"/>
-                <ul>
-                    <div className="nav-logo">
+                    <ul>
                         <li><a href="/" className="active">Home</a></li>
-                        <li><a href="/">About</a></li>
-                        <li><a href="/">Contact</a></li>
-                        <li><a href="/login/trainer">Trainer</a></li>
-                        <li><a href="/login">Sporter</a></li>
-                    </div>
-                </ul>
+                        {currentUser && (
+                            <li>
+                                <Link to={"/trainer"}>
+                                    Trainer
+                                </Link>
+                            </li>
+                        )}
+
+                        {currentUser ? (
+                            <div>
+                                <li>
+                                    <Link to={"/profile"}>
+                                        {currentUser.username}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a href="/login" onClick={logOut}>
+                                        Logout
+                                    </a>
+                                </li>
+                            </div>
+                        ):(
+                                <li><a href="/login">Login</a></li>
+                        )}
+
+                    </ul>
                 </nav>
             </header>
         </div>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './styles/style.scss';
 import NavBar from "./components/NavBar";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import RegisterTrainer from "./components/register/RegisterTrainer";
 import RegisterSporter from "./components/register/RegisterSporter";
 import Login from "./components/login/Login";
@@ -15,10 +15,7 @@ import Maps from "./components/Maps";
 import ProfilePT from "./components/profiles/ProfilePT";
 import LoginPT from "./components/login/LoginPT";
 
-
-
 function App () {
-
 
     return (
       <div >
@@ -31,7 +28,7 @@ function App () {
                   <Route path="/login" component={Login}/>
                   <Route path="/login/trainer" component={LoginPT}/>
                   <Route path="/profile/sporter" component={Profile}/>
-                  <Route path="/profile/trainer" component={ProfilePT}/>
+                  <Route path="/profile" component={ProfilePT}/>
                   <Route path="/add" component={AddActivity}/>
                   <Route path="/activiteit" component={ActivityProfile}/>
                   <Route path="/update" component={UpdateActivity}/>
