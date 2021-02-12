@@ -1,22 +1,26 @@
 //https://www.youtube.com/watch?v=WZcxJGmLbSo
 
-import React, {useCallback, useRef, useState} from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow,} from "@react-google-maps/api";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 import usePlacesAutocomplete, { getGeocode, getLatLng,} from "use-places-autocomplete";
 import {Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption} from "@reach/combobox";
 import { formatRelative } from "date-fns";
 
 import mapStyles from "../mapStyles";
 import "@reach/combobox/styles.css";
+import ActivityProfile from "./activity/ActivityProfile";
+import AcceptActivity from "./activity/AcceptActivity";
+import logo from "./assets/Logo.png";
 
 //door het hier te plaats zorgt het ervoor dat de array niet steeds opnieuw wordt bekeken als object
 //tijdens rerender
 const libraries = ["places"];
 
 const mapContainerStyle = {
-    height: "100vh",
     width: "100vw",
+    height: "100vh"
 };
+
 const eindhoven = {
     lat: 51.441643,
     lng: 5.469722
@@ -73,7 +77,7 @@ export default function Maps() {
 
 
     return (
-        <div>
+        <div >
             <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={12}
@@ -82,17 +86,17 @@ export default function Maps() {
             onClick={onMapClick}
             onLoad={onMapLoad}
             >
-                    <h1>Train Fast</h1>
-                    <Search panTo={panTo}/>
+                {/*<h1><img src={logo} alt="trainfast" className="logomap"/></h1>*/}
+                <Search panTo={panTo}/>
 
                 {markers.map((marker) =>(
                     <Marker
-                    key={marker.time.toISOString}
+                    key={marker.time.toISOString()}
                     position={{lat: marker.lat, lng: marker.lng}}
                     onClick={() => {
                         setSelected(marker);
                     }}
-                />
+                    />
                 ))}
                 {selected ? (<InfoWindow
                 position={{lat: selected.lat, lng: selected.lng}}
@@ -103,6 +107,7 @@ export default function Maps() {
                         <h2>Sportactiviteit</h2>
                         <p>Activiteit: Boksen</p>
                         <p>Tijdstip: {formatRelative(selected.time, new Date())}</p>
+                        <AcceptActivity/>
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
@@ -123,26 +128,33 @@ function Search({panTo}) {
         }
     });
 
+
+    const selectHandle = async (address) => {
+        // als er op een suggestie geklikt wordt dan laat het de informatie zien zie graag
+        // terug willen ontvangen.
+        setValue(address, false);
+        //dit zorgt ervoor dat gegevens niet gefetched worden uit de google data
+        //dit is een functie dat onderdeel is van usePlacesAutocomplete
+        clearSuggestions();
+        //clearSuggestions laat niet alle suggesties zien maar een deel wat opgevraagd wordt
+        try {
+            const results = await getGeocode({address});
+            // adress wordt opgevraagd dat door de functie geocode een resultaat aanroept van het address
+            // dat weer de lat,lng opvraagt en weergeeft als de locatie is gepinned
+            const {lat, lng} = await getLatLng(results[0]);
+            console.log("📍 Coordinates: ", { lat, lng });
+            panTo({lat, lng});
+            if ({lat, lng} === {lat, lng}){
+
+            }
+        }catch (error) {
+            console.log(error)
+
+        }}
+
     return (
         <div className="search">
-            <Combobox onSelect={ async (address) => {
-                // als er op een suggestie geklikt wordt dan laat het de informatie zien zie graag
-                // terug willen ontvangen.
-                setValue(address, false);
-                //dit zorgt ervoor dat gegevens niet gefetched worden uit de google data
-                //dit is een functie dat onderdeel is van usePlacesAutocomplete
-                clearSuggestions();
-                //clearSuggestions laat niet alle suggesties zien maar een deel wat opgevraagd wordt
-                try {
-                    const results = await getGeocode({address});
-                    // adress wordt opgevraagd dat door de functie geocode een resultaat aanroept van het address
-                    // dat weer de lat,lng opvraagt en weergeeft als de locatie is gepinned
-                    const {lat, lng} = await getLatLng(results[0]);
-                    panTo({lat, lng});
-                }catch (error) {
-                    console.log(error)
-                    
-                }}}>
+            <Combobox onSelect={selectHandle}>
             {/*//2 childern zullen in de combobox geplaatst worden*/}
                 <ComboboxInput value={value}
                                onChange={(event) => {
@@ -150,12 +162,12 @@ function Search({panTo}) {
                                }}
                                disabled={!ready}
                                placeholder="Zoek locatie"
-                />
-                <ComboboxPopover>
-                    <ComboboxList>
+                               />
+                <ComboboxPopover >
+                    <ComboboxList >
                         {status === "OK" &&
-                        data.map(({ id, description }) => (
-                            <ComboboxOption key={id} value={description} />
+                        data.map(({ place_id, description }) => (
+                            <ComboboxOption key={place_id} value={description} />
                         ))}
                     </ComboboxList>
                 </ComboboxPopover>
@@ -163,5 +175,30 @@ function Search({panTo}) {
         </div>)
 }
 
+
+function Address() {
+    const [address, setAddress] = useState("");
+    const [zipcode, setZipcode] = useState("");
+    const [city, setCity] = useState("");
+    const [mapPosition, setMapPosition] = useState({
+        lat: "",
+        lng: "",
+    });
+    const [markerPosition, setMarkerPosition] = useState({
+        lat: "",
+        lng: "",
+    });
+
+
+    useEffect(() =>{
+
+    }, [])
+
+    return(
+        <div>
+
+        </div>
+    )
+}
 
 

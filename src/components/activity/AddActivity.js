@@ -25,13 +25,19 @@ const AddActivity = ({history}) => {
 
         console.log(trainerId);
         return axios.post(`activity/${trainerId}`, addActivity)
-            .then((result) => {
+            .then((response) => {
                 if (trainerId === trainerId) {
-                    localStorage.setItem("activity_id", JSON.stringify(result.data));
-                }
-                console.log(result)
+                    localStorage.setItem("activity_id", JSON.stringify(response.data));
+                    // setAddActivity({
+                    //     activityName: response.data.activityName,
+                    //     nameTrainer: response.data.nameTrainer,
+                    //     location: response.data.location,
+                    //     date: response.data.date,
+                    //     time: response.data.time
+                    // })
+                console.log(response)
                 history.push('/activiteit')
-            })
+            }})
             .catch((error) => {
                 console.log(error);
             })

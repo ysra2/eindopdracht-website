@@ -1,7 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom";
 import AuthService from "../../services/auth.service";
-import DeleteActivity from "./DeleteActivity";
 
 const ActivityProfile = () => {
 
@@ -13,12 +12,6 @@ const ActivityProfile = () => {
             <h3>
                 Sportactiviteit
             </h3>
-            <p>
-                <strong>
-                    ActivityId:
-                </strong>
-                {currentActivity.activityId}
-            </p>
             <p>
                 <strong>
                     Activiteit:
@@ -52,7 +45,6 @@ const ActivityProfile = () => {
             <button>
                 <Link to="trainer/add">Terug</Link>
             </button>
-            <DeleteActivity/>
         </div>
         </div>
     );

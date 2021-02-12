@@ -26,7 +26,7 @@ const Login = ({history}) => {
         ).then(
             (response) => {
                 console.log(response);
-                history.push('/profile/sporter');
+                history.push('/profile');
                 setSuccessful(true);
             });
 

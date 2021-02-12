@@ -42,7 +42,7 @@ function NavBar() {
                             <div>
                                 <li>
                                     <Link to={"/profile"}>
-                                        {currentUser.username}
+                                       {currentUser.firstname}
                                     </Link>
                                 </li>
                                 <li>

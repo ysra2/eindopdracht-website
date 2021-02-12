@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './styles/style.scss';
 import NavBar from "./components/NavBar";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import RegisterTrainer from "./components/register/RegisterTrainer";
 import RegisterSporter from "./components/register/RegisterSporter";
 import Login from "./components/login/Login";
@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import Maps from "./components/Maps";
 import ProfilePT from "./components/profiles/ProfilePT";
 import LoginPT from "./components/login/LoginPT";
+import SporterPage from "./pages/SporterPage";
 
 function App () {
 
@@ -33,6 +34,7 @@ function App () {
                   <Route path="/activiteit" component={ActivityProfile}/>
                   <Route path="/update" component={UpdateActivity}/>
                   <Route path="/trainer"><TrainerPage/></Route>
+                  <Route path="/sporter"><SporterPage/></Route>
                   <Route path="/map"><Maps/></Route>
               </Switch>
           </Router>

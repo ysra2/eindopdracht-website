@@ -5,4 +5,20 @@
 @import "form";
 @import "maps";
 @import "footer";
-//@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+
+.column-pages{
+  float: left;
+  width: 50%;
+}
+
+.row-pages{
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 538px) {
+  .column {
+    width: 100%;
+  }
+}

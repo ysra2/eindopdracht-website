@@ -8,8 +8,8 @@ const ProfilePT = () => {
         <div className="form-page">
             <div className="form">
                 <h3 >
-                    Profile:
-                    <strong>{currentUser.username}</strong>
+                    Welkom:
+                    <strong>{currentUser.firstNamename}</strong>
                 </h3>
             </div>
             <p>

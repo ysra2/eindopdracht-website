@@ -116,7 +116,6 @@ img {
   display: block;
   transition: 0.5s ease;
   backface-visibility: hidden;
-  background-color: #25c990;
 }
 
 footer {
@@ -280,10 +279,10 @@ h1 {
 .search {
   position: absolute;
   top: 1rem;
-  left: 80%;
+  left: 70%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 400px;
+  max-width: 250px;
   border: none;
   z-index: 10;
 }
@@ -292,6 +291,21 @@ h1 {
   padding: 0.5rem;
   font-size: 1.5rem;
   width: 100%;
+}
+
+.map {
+  width: 50vw;
+  height: 80vh;
+}
+.map .search {
+  display: none;
+}
+.map .logomap {
+  float: right;
+  width: 250px;
+  height: 120px;
+  line-height: 80px;
+  display: flex;
 }
 
 @media (max-width: 958px) {
@@ -322,6 +336,22 @@ footer ul a {
   border-radius: 3px;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.column-pages {
+  float: left;
+  width: 50%;
+}
+
+.row-pages {
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 538px) {
+  .column {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
