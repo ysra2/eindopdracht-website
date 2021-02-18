@@ -8,17 +8,16 @@ import { formatRelative } from "date-fns";
 
 import mapStyles from "../mapStyles";
 import "@reach/combobox/styles.css";
-import ActivityProfile from "./activity/ActivityProfile";
 import AcceptActivity from "./activity/AcceptActivity";
-import logo from "./assets/Logo.png";
+import AddMarker from "./Marker";
 
 //door het hier te plaats zorgt het ervoor dat de array niet steeds opnieuw wordt bekeken als object
 //tijdens rerender
 const libraries = ["places"];
 
 const mapContainerStyle = {
-    width: "100vw",
-    height: "100vh"
+    width: "100%",
+    height: "90vh"
 };
 
 const eindhoven = {
@@ -55,6 +54,16 @@ export default function Maps() {
         ]);
     }, []);
 
+
+    const [ currentPosition, setCurrentPosition ] = useState({});
+
+    //Hiermee kan je de marker verplaatsen
+    const onMarkerDragEnd = (e) => {
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+        setCurrentPosition({ lat, lng})
+    };
+
     //geeft ons een veranderd variable terug
     //de huidige eigenschap zal dan geïnitialiseerd worden
     //teruggegeven object zal op zijn plaats blijven staan (tot levensduur van de component)
@@ -85,6 +94,8 @@ export default function Maps() {
             options={options}
             onClick={onMapClick}
             onLoad={onMapLoad}
+            language="nl"
+            region="NL"
             >
                 {/*<h1><img src={logo} alt="trainfast" className="logomap"/></h1>*/}
                 <Search panTo={panTo}/>
@@ -95,6 +106,11 @@ export default function Maps() {
                     position={{lat: marker.lat, lng: marker.lng}}
                     onClick={() => {
                         setSelected(marker);
+                    }}
+                    onDragEnd={(e) => onMarkerDragEnd(e)}
+                    draggable={true}
+                    onDrag={() => {
+                        setCurrentPosition(marker)
                     }}
                     />
                 ))}
@@ -107,9 +123,10 @@ export default function Maps() {
                         <h2>Sportactiviteit</h2>
                         <p>Activiteit: Boksen</p>
                         <p>Tijdstip: {formatRelative(selected.time, new Date())}</p>
-                        <AcceptActivity/>
-                    </div>
+                        <AcceptActivity/></div>
+
                 </InfoWindow>) : null}
+                <AddMarker/>
             </GoogleMap>
         </div>
     )
@@ -139,6 +156,7 @@ function Search({panTo}) {
         //clearSuggestions laat niet alle suggesties zien maar een deel wat opgevraagd wordt
         try {
             const results = await getGeocode({address});
+            // console.log(results)
             // adress wordt opgevraagd dat door de functie geocode een resultaat aanroept van het address
             // dat weer de lat,lng opvraagt en weergeeft als de locatie is gepinned
             const {lat, lng} = await getLatLng(results[0]);
@@ -149,7 +167,6 @@ function Search({panTo}) {
             }
         }catch (error) {
             console.log(error)
-
         }}
 
     return (
@@ -176,29 +193,5 @@ function Search({panTo}) {
 }
 
 
-function Address() {
-    const [address, setAddress] = useState("");
-    const [zipcode, setZipcode] = useState("");
-    const [city, setCity] = useState("");
-    const [mapPosition, setMapPosition] = useState({
-        lat: "",
-        lng: "",
-    });
-    const [markerPosition, setMarkerPosition] = useState({
-        lat: "",
-        lng: "",
-    });
-
-
-    useEffect(() =>{
-
-    }, [])
-
-    return(
-        <div>
-
-        </div>
-    )
-}
 
 
