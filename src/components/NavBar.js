@@ -50,13 +50,16 @@ function NavBar() {
                         {currentUser ? (
                             <div>
                                 <li>
-                                    <a href="/login/trainer" onClick={logOut}>
+                                    <a href="/home" onClick={logOut}>
                                         Logout
                                     </a>
                                 </li>
                             </div>
                         ):(
-                                <li><a href="/login/trainer">Trainer</a></li>
+                                <ul>
+                                    <li><a href="/login/trainer">Trainer</a></li>
+                                    <li><a href="/login/sporter">Sporter</a></li>
+                                </ul>
                         )}
 
                     </ul>
