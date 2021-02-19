@@ -3,7 +3,8 @@ import useForm from "../useForm";
 import validate from "../validateInfo";
 import AuthService from "../../services/auth.service"
 
-const LoginPT = ({history}) => {
+
+function LoginPT({history}){
     const {handleChange, formData, errors, setSuccessful, setErrors, setMessage} =
         useForm(submit, validate);
 

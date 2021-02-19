@@ -22,7 +22,7 @@ const DeleteActivity = (props) => {
     return(
         <>
             <div>
-                <button onClick={deleteSubmit}>Delete</button>
+                <button onClick={deleteSubmit}>Verwijder Activiteit</button>
             </div>
         </>
     )

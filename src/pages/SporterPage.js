@@ -1,12 +1,17 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Maps from "../components/Maps";
-import AcceptActivity from "../components/activity/AcceptActivity";
-import DeleteActivity from "../components/activity/DeleteActivity";
-import ActivityProfile from "../components/activity/ActivityProfile";
 
 export default function SporterPage() {
     return (
         <div >
+            <div >
+                <nav >
+                    <ul>
+                        <li><Link to="/list">Activiteiten</Link></li>
+                    </ul>
+                </nav>
+            </div>
             <div className="map">
                 <Maps/>
             </div>

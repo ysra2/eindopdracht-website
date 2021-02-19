@@ -16,7 +16,11 @@ const RegisterTrainer = () => {
         <div className="form-page">
             <form className="form">
             <label className="title">Trainer</label>
-            {!successful && (
+                {successful ? (
+                        <div>
+                            <h4>Succesvol geregistreerd</h4>
+                        </div>
+                    ):(
                 <div>
                     <div >
                         <label>Voornaam</label>

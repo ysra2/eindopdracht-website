@@ -15,11 +15,14 @@ import Maps from "./components/Maps";
 import ProfilePT from "./components/profiles/ProfilePT";
 import LoginPT from "./components/login/LoginPT";
 import SporterPage from "./pages/SporterPage";
+import ListActivity from "./components/activity/ListActivity";
+import {AuthContext} from "./context/AuthContext";
+import ActivityAdded from "./components/activity/ActivityAdded";
 
 function App () {
 
     return (
-      <div >
+      <AuthContext.Provider>
           <NavBar/>
           <Router>
               <Switch>
@@ -36,9 +39,11 @@ function App () {
                   <Route path="/trainer"><TrainerPage/></Route>
                   <Route path="/sporter"><SporterPage/></Route>
                   <Route path="/map"><Maps/></Route>
+                  <Route path="/list"><ListActivity/></Route>
+                  <Route path="/post"><ActivityAdded/></Route>
               </Switch>
           </Router>
-      </div>
+      </AuthContext.Provider>
   );
 
 }

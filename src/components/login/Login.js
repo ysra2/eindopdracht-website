@@ -1,9 +1,10 @@
-import React from "react";
+import React  from "react";
 import useForm from "../useForm";
 import validate from "../validateInfo";
 import AuthService from "../../services/auth.service"
 
-const Login = ({history}) => {
+
+function Login({history}){
     const {handleChange, formData, errors, setSuccessful, setErrors, setMessage} =
         useForm(submit, validate);
 
@@ -31,6 +32,7 @@ const Login = ({history}) => {
             });
 
     };
+
 
     return(
         <div className="form-page">

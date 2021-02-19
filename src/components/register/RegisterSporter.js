@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import useForm from "../useForm";
 import validate from "../validateInfo";
 
 const RegisterSporter = () => {
     const {handleChange, formData, handleSubmitSporter, errors, successful, message} =
         useForm(submit, validate);
-
 
     function submit() {
         console.log("Succesvol geregistreerd");
@@ -15,7 +14,11 @@ const RegisterSporter = () => {
         <div className="form-page">
             <form className="form">
                 <label className="title">Sporter</label>
-                {!successful && (
+                {successful ? (
+                    <div>
+                        <h4>Succesvol geregistreerd</h4>
+                    </div>
+                ):(
                     <div>
                         <div >
                             <label>Voornaam</label>

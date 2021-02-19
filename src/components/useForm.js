@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import AuthService from "../services/auth.service";
 
 const useForm = (callBack, validate) => {
+    //object als state in react
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",

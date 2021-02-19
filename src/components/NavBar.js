@@ -2,13 +2,28 @@ import React, {useEffect, useState} from 'react';
 import logo from "./assets/Logo.png"
 import {Link} from "react-router-dom";
 import AuthService from "../services/auth.service";
+import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
-    const [currentUser, setCurrentUser] = useState(undefined)
+    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentTrainer, setCurrentTrainer] = useState(false);
+    const [currentSporter, setCurrentSporter] = useState(false);
 
     useEffect(()=>{
         const user = AuthService.getCurrentUser();
+        if (user){
             setCurrentUser(user)
+        }
+        const trainer = AuthService.getCurrentTrainer();
+        if(trainer){
+            setCurrentTrainer(trainer)
+        }
+
+        const sporter = AuthService.getCurrentSporter();
+        if(sporter){
+            setCurrentSporter(sporter)
+        }
+
     }, [])
 
     const logOut = () =>{
@@ -17,7 +32,7 @@ function NavBar() {
 
 
     return(
-        <div >
+        <AuthContext.Provider>
             <header className="header">
                 <nav className="navbar">
                     <input type="checkbox" id="check"/>
@@ -28,37 +43,27 @@ function NavBar() {
                     </label>
                 {/*//Hier komt nog een image dat hetzelfde is als een home button*/}
                     <img src={logo} alt="trainfast" className="logo"/>
+                    <div>
                     <ul>
                         <li><a href="/" className="active">Home</a></li>
-                        {currentUser && (
-                            <li>
-                                <Link to={"/trainer"}>
-                                    Trainer
-                                </Link>
-                            </li>
-                        )}
 
                         {currentUser ? (
                             <div>
                                 <li>
-                                    <Link to={"/profile"}>
-                                       {currentUser.firstname}
-                                    </Link>
-                                </li>
-                                <li>
-                                    <a href="/login" onClick={logOut}>
+                                    <a href="/login/trainer" onClick={logOut}>
                                         Logout
                                     </a>
                                 </li>
                             </div>
                         ):(
-                                <li><a href="/login">Login</a></li>
+                                <li><a href="/login/trainer">Trainer</a></li>
                         )}
 
                     </ul>
+                    </div>
                 </nav>
             </header>
-        </div>
+        </AuthContext.Provider>
     )
 
 }

@@ -1,32 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import AddActivity from "../components/AddActivity";
 import UpdateActivity from "../components/activity/UpdateActivity";
-import ActivityProfile from "../components/activity/ActivityProfile";
-import AuthActivity from "../services/auth-activity"
-import AcceptActivity from "../components/activity/AcceptActivity";
+import AddActivity from "../components/activity/AddActivity";
+import Maps from "../components/Maps";
+import {Link} from "react-router-dom";
+import ListActivity from "../components/activity/ListActivity";
 
 function TrainerPage() {
-
-    // const [display, setdisplay] = useState(undefined)
-
-    // useEffect(() =>{
-    //     const activity = AuthActivity().activityId
-    //     setdisplay(activity)
-    // },[])
-
     return(
-        <div className="row-pages">
-            <div className="column-pages">
+        <div >
+            <div >
+                <nav >
+                    <ul>
+                        <li><Link to="/post">Activiteiten</Link></li>
+                        <li><Link to="/update">Wijzig Training</Link></li>
+                    </ul>
+                </nav>
+            </div>
+            <div >
                 <AddActivity/>
-                {/*{display ?(*/}
-                {/*    <ActivityProfile/>*/}
-                {/*) :(*/}
-                {/*    <AddActivity/>*/}
-                {/*)}*/}
             </div>
-            <div className="column-pages">
-                <UpdateActivity/>
+            <div>
+                <Maps/>
             </div>
+            {/*<AddActivity/>*/}
         </div>
     )
 }

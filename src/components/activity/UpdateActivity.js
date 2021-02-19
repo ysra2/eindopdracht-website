@@ -10,7 +10,9 @@ const UpdateActivity = (props) => {
     const [updateActivity, setUpdateActivity] = useState({
         activityName: "",
         nameTrainer: "",
-        location: "",
+        address: "",
+        zipcode: "",
+        city: "",
         date: "",
         time: ""});
 
@@ -87,13 +89,24 @@ const UpdateActivity = (props) => {
                        value={updateActivity.nameTrainer} onChange={activityChange}/>
 
             </div>
-            <div>
-                <label>Locatie</label>
-                <input id="location" type="address" placeholder="Locatie"
-                       value={updateActivity.location} onChange={activityChange}/>
+                    <div>
+                        <label>Adres</label>
+                        <input id="address" type="address" placeholder="Adres"
+                               value={updateActivity.address} onChange={activityChange}/>
 
-            </div>
-            <div>
+                    </div>
+                    <div>
+                        <label>Postcode</label>
+                        <input id="zipcode" type="zipcode" placeholder="Postcode (optioneel)"
+                               value={updateActivity.zipcode} onChange={activityChange}/>
+
+                    </div>
+                    <div>
+                        <label>Plaats</label>
+                        <input id="city" type="city" placeholder="Plaats"
+                               value={updateActivity.city} onChange={activityChange}/>
+                    </div>
+                        <div>
                 <label>Tijd</label>
                 <input id="time" type="time" placeholder="Tijd"
                        value={updateActivity.time} onChange={activityChange}/>

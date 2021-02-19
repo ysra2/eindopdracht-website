@@ -6,7 +6,9 @@ const AddActivity = ({history}) => {
     const [addActivity, setAddActivity] = useState({
         activityName: "",
         nameTrainer: "",
-        location: "",
+        address: "",
+        zipcode: "",
+        city: "",
         date: "",
         time: ""});
 
@@ -24,17 +26,22 @@ const AddActivity = ({history}) => {
         const trainerId = authHeader().id;
 
         console.log(trainerId);
-        return axios.post(`activity/${trainerId}`, addActivity)
+        return axios.post(`activity/${trainerId}`,
+            {
+                activityName: addActivity.activityName,
+                nameTrainer: addActivity.nameTrainer,
+                address: addActivity.address,
+                zipcode: addActivity.zipcode,
+                city: addActivity.city,
+                date: addActivity.date,
+                time: addActivity.time
+            })
             .then((response) => {
                 if (trainerId === trainerId) {
                     localStorage.setItem("activity_id", JSON.stringify(response.data));
-                    // setAddActivity({
-                    //     activityName: response.data.activityName,
-                    //     nameTrainer: response.data.nameTrainer,
-                    //     location: response.data.location,
-                    //     date: response.data.date,
-                    //     time: response.data.time
-                    // })
+                    setAddActivity({
+                        ...addActivity
+                    })
                 console.log(response)
                 history.push('/activiteit')
             }})
@@ -52,6 +59,12 @@ const AddActivity = ({history}) => {
                 <label className="title">
                     Training
                 </label>
+                {/*{addActivity ? (*/}
+                {/*    <div>*/}
+                {/*        <h4>Training is toegevoegd</h4>*/}
+                {/*    </div>*/}
+                {/*    ):(*/}
+                        <div>
             <div>
                 <label>Sportactiviteit</label>
                 <input id="activityName"  placeholder="Sportactiviteit"
@@ -64,10 +77,22 @@ const AddActivity = ({history}) => {
                        value={addActivity.nameTrainer} onChange={activityChange}/>
 
             </div>
-            <div>
-                <label>Locatie</label>
-                <input id="location" type="address" placeholder="Locatie"
-                       value={addActivity.location} onChange={activityChange}/>
+                            <div>
+                                <label>Adres</label>
+                                <input id="address" type="address" placeholder="Adres"
+                                       value={addActivity.address} onChange={activityChange}/>
+
+                            </div>
+                            <div>
+                            <label>Postcode</label>
+                            <input id="zipcode" type="zipcode" placeholder="Postcode (optioneel)"
+                                   value={addActivity.zipcode} onChange={activityChange}/>
+
+                        </div>
+                            <div>
+                <label>Plaats</label>
+                <input id="city" type="city" placeholder="Plaats"
+                       value={addActivity.city} onChange={activityChange}/>
 
             </div>
             <div>
@@ -89,6 +114,8 @@ const AddActivity = ({history}) => {
             <button type="reset" >
                 Reset
             </button>
+                        </div>
+                    {/*)}*/}
             </form>
         </div>
     )
