@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import axios from "../../services/axios.instance"
 import authHeader from "../../services/auth-header";
 
@@ -43,14 +43,21 @@ const AddActivity = ({history}) => {
                         ...addActivity
                     })
                 console.log(response)
-                history.push('/activiteit')
-            }})
+                // history.push('/activiteit')
+            }}).then(() =>{
+                const activityId = JSON.parse(localStorage.getItem("activity_id"))
+                if (activityId) setAddActivity(activityId)
+            })
             .catch((error) => {
                 console.log(error);
             })
 
 
     }
+
+    useEffect(()=>{
+
+    },[])
 
 
     return(

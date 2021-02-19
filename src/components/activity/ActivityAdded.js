@@ -3,6 +3,7 @@ import axios from "../../services/axios.instance"
 import UpdateActivity from "./UpdateActivity";
 import DeleteActivity from "./DeleteActivity";
 import authHeader from "../../services/auth-header";
+import {Link} from "react-router-dom";
 
 
 export default function ActivityAdded() {
@@ -11,20 +12,21 @@ export default function ActivityAdded() {
     const [search, setSearch] = useState("");
 
 
-    useEffect((event) =>{
-        event.preventDefault();
+    useEffect(() =>{
+        // event.preventDefault();
 
         const trainerId = authHeader().id;
         axios.get(`/user_sports/trainer/${trainerId}`)
             .then((response) =>{
-                setPost(response.data);
-                console.log(response.data);
+                setPost(response.data["activities"]);
+                console.log(response.data["activities"]);
                 setLoading(false);
             })
             .catch(error =>{
                 console.log(error)
             })
     },[])
+
 
 
     return (
@@ -42,12 +44,12 @@ export default function ActivityAdded() {
                 <div> Hier ziet u een overzicht van alle activiteiten in Eindhoven.
                     Meld je aan voor één of meerdere activiteiten
                 </div>
-
-                <div>
                     <ul className="form-page">
-                        {post.map((activity, i) =>(
+                        <div>
+                        {post?.map((activity, i) =>(
                             <div className="form"
-                                 key={i}>
+                                 key={i}
+                            >
                                 <div>
                                     <div>
                                         <h4>Sportactiviteit: </h4>
@@ -78,14 +80,20 @@ export default function ActivityAdded() {
                                         {activity.date}
                                     </div>
                                     <br/>
-                                    <UpdateActivity/>
+                                    <button type="button">
+                                        <Link to="/update">
+                                            Activiteit Wijzigen
+                                        </Link>
+                                    </button>
+
                                     <br/>
                                     <DeleteActivity/>
                                 </div>
                             </div>
+
                         ))}
+                        </div>
                     </ul>
-                </div>
                 )}
             </div>
             }
