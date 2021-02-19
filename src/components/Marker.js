@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "../services/axios.instance";
 import {InfoWindow, Marker} from "@react-google-maps/api";
+import AcceptActivity from "./activity/AcceptActivity";
 
 
 export default function AddMarker() {
@@ -40,13 +41,25 @@ export default function AddMarker() {
                 />
                ))}
 
-                {selected && console.log(typeof selected.lng)}
-                {/*{selected ? (<InfoWindow*/}
-                {/*    position={{lat: 51.451441, lng: 5.486014}}*/}
-                {/*    >*/}
-                {/*        <div>hoi</div>*/}
-                {/*    </InfoWindow>*/}
-                {/*): null}*/}
+            {selected ? (<InfoWindow
+                    position={{lat: selected?.lat || 51.451441, lng: selected?.lng || 5.486014}}
+                    onCloseClick={() => setSelected(null)}
+                >
+                    <div>
+                        <ul>
+                            <li>{selected["info_window"]?.activityName}</li>
+                            <li>{selected["info_window"]?.nameTrainer}</li>
+                            <li>{selected["info_window"]?.address}</li>
+                            <li>{selected["info_window"]?.time}</li>
+                            <li>{selected["info_window"]?.date}</li>
+                        </ul>
+                        <AcceptActivity/>
+                    </div>
+                </InfoWindow>
+            ): null}
+
+
+
         </>
     );
 
