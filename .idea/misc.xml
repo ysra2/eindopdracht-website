@@ -4,7 +4,7 @@
     <option name="languageLevel" value="JSX" />
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/src/components/AddActivity.js" />
+    <file url="file://$PROJECT_DIR$/src/components/.../DeleteActivity.js" />
     <file url="file://$PROJECT_DIR$/src/components/AddActivity.js" />
     <file url="file://$PROJECT_DIR$/src/services/user.service.js" />
   </component>

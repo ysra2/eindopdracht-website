@@ -50,7 +50,7 @@ function NavBar() {
                         {currentUser ? (
                             <div>
                                 <li>
-                                    <a href="/home" onClick={logOut}>
+                                    <a href="/" onClick={logOut}>
                                         Logout
                                     </a>
                                 </li>

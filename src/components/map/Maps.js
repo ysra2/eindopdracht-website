@@ -1,15 +1,14 @@
 //https://www.youtube.com/watch?v=WZcxJGmLbSo
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback,useRef,useState} from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 import usePlacesAutocomplete, { getGeocode, getLatLng,} from "use-places-autocomplete";
 import {Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption} from "@reach/combobox";
 import { formatRelative } from "date-fns";
-
-import mapStyles from "../mapStyles";
+import mapStyles from "../../mapStyles";
 import "@reach/combobox/styles.css";
-import AcceptActivity from "./activity/AcceptActivity";
-import AddMarker from "./Marker";
+import AcceptActivity from "../AcceptActivity";
+import AddMarker from "./AddMarker";
 
 //door het hier te plaats zorgt het ervoor dat de array niet steeds opnieuw wordt bekeken als object
 //tijdens rerender

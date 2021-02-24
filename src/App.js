@@ -7,17 +7,14 @@ import RegisterSporter from "./components/register/RegisterSporter";
 import Login from "./components/login/Login";
 import Profile from "./components/profiles/Profile";
 import TrainerPage from "./pages/TrainerPage";
-import AddActivity from "./components/activity/AddActivity";
-import ActivityProfile from "./components/activity/ActivityProfile";
-import UpdateActivity from "./components/activity/UpdateActivity";
 import HomePage from "./pages/HomePage";
-import Maps from "./components/Maps";
+import Maps from "./components/map/Maps";
 import ProfilePT from "./components/profiles/ProfilePT";
 import LoginPT from "./components/login/LoginPT";
 import SporterPage from "./pages/SporterPage";
-import ListActivity from "./components/activity/ListActivity";
+import ListActivity from "./components/ListActivity";
 import {AuthContext} from "./context/AuthContext";
-import ActivityAdded from "./components/activity/ActivityAdded";
+import Footer from "./components/Footer";
 
 function App () {
 
@@ -32,15 +29,11 @@ function App () {
                   <Route path="/login" component={Login}/>
                   <Route path="/login/trainer" component={LoginPT}/>
                   <Route path="/profile/sporter" component={Profile}/>
-                  <Route path="/profile" component={ProfilePT}/>
-                  <Route path="/add" component={AddActivity}/>
-                  <Route path="/activiteit" component={ActivityProfile}/>
-                  <Route path="/update" component={UpdateActivity}/>
+                  <Route path="/profile/trainer" component={ProfilePT}/>
                   <Route path="/trainer"><TrainerPage/></Route>
                   <Route path="/sporter"><SporterPage/></Route>
                   <Route path="/map"><Maps/></Route>
                   <Route path="/list"><ListActivity/></Route>
-                  <Route path="/post"><ActivityAdded/></Route>
               </Switch>
           </Router>
       </AuthContext.Provider>

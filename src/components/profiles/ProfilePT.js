@@ -1,15 +1,21 @@
 import React from "react";
 import AuthService from "../../services/auth.service";
+import {Link} from "react-router-dom";
 
 const ProfilePT = () => {
-    const currentUser = AuthService.getCurrentUser();
+    const currentUser = AuthService.getCurrentTrainer();
 
     return(
         <div className="form-page">
             <div className="form">
                 <h3 >
                     Welkom:
-                    <strong>{currentUser.firstNamename}</strong>
+                    <strong>{currentUser.firstname}</strong>
+                    <Link to="/trainer">
+                        <button type="button">
+                            Ga naar de trainer pagina
+                        </button>
+                    </Link>
                 </h3>
             </div>
             <p>

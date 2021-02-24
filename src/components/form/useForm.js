@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const useForm = (callBack, validate) => {
     //object als state in react
@@ -18,7 +18,7 @@ const useForm = (callBack, validate) => {
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
 
-    const handleChange = event => {
+    const handleChangePT = event => {
         const {id, value} = event.target;
         (setFormData({
             ...formData,
@@ -73,6 +73,14 @@ const useForm = (callBack, validate) => {
 
     };
 
+    const handleChange = event => {
+        const {id, value} = event.target;
+        (setFormData({
+            ...formData,
+            [id]: value
+        }));
+    };
+
     const handleSubmitSporter = (event) => {
         event.preventDefault();
         setErrors(validate(formData));
@@ -80,9 +88,6 @@ const useForm = (callBack, validate) => {
         setMessage("");
         setSuccessful(true);
 
-//Het is vreemd dat ik niet dubbel gebruik kan maken van de state formData zelf.
-// Het lijkt alsof de server het niet accepteert en het geeft een error 400.
-        //Hierdoor moet ik specifiek in de data weergeven dat het om bijv formData.firstName gaat
         AuthService.registerSporter(
             formData.firstName,
             formData.lastName,
@@ -124,7 +129,6 @@ const useForm = (callBack, validate) => {
 
 
 
-
     //useEffect checks of de errors veranderen
     useEffect(() => {
             //controleer of er geen errors zijn
@@ -137,7 +141,9 @@ const useForm = (callBack, validate) => {
         //verander alleen als het object veranderd.
         [errors])
 
-    return {handleChange,
+    return {
+        handleChangePT,
+        handleChange,
         formData,
         handleSubmitTrainer,
         handleSubmitSporter,

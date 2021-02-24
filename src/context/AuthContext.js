@@ -12,7 +12,7 @@ function AuthContextProvider({ children }) {
                 ...authState,
                 status: 'done',
             })
-        }, 2000)
+        }, 3000)
     }, []);
 
     return (

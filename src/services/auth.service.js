@@ -20,8 +20,7 @@ const registerTrainer = async (firstName, lastName, username, email, password) =
         lastName,
         username,
         email,
-        password,
-        role: ["trainer"]
+        password
 
     });
 };
@@ -40,6 +39,23 @@ const login = async (username, password) => {
         });
 };
 
+
+const loginPT = async (username, password) => {
+    return await axios
+        .post("auth/signin", {
+            username,
+            password,
+            role:["trainer"]
+        })
+        .then((result) => {
+            if (result.data.accessToken) {
+                localStorage.setItem("user_id", JSON.stringify(result.data));
+            }
+            return result.data;
+        });
+};
+
+
 const logout = () => {
     localStorage.removeItem("user_id");
 };
@@ -47,7 +63,6 @@ const logout = () => {
 const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user_id"));
 };
-
 
 const getCurrentSporter = () => {
     return JSON.parse(localStorage.getItem("user_id"));
@@ -57,7 +72,7 @@ const getCurrentTrainer = () => {
 };
 
 const getCurrentActivity = () => {
-    return JSON.parse(localStorage.getItem("activity_id"));
+    return JSON.parse(localStorage.getItem("activities"));
 };
 
 
@@ -65,6 +80,7 @@ export default {
     registerTrainer,
     registerSporter,
     login,
+    loginPT,
     logout,
     getCurrentUser,
     getCurrentTrainer,

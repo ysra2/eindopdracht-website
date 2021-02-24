@@ -296,6 +296,7 @@ h1 {
 .map {
   width: 50vw;
   height: 80vh;
+  display: inline-flex;
 }
 .map .search {
   display: none;

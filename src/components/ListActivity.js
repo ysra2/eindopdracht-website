@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "../../services/axios.instance"
-import AcceptActivity from "./AcceptActivity";
+import axios from "../services/axios.instance"
 
 export default function ListActivity() {
     const [activity, setActivity] = useState([]);
@@ -26,7 +25,7 @@ export default function ListActivity() {
             {loading &&
             <p>Loading...</p>}
             {!loading &&
-            <div>
+            <div className="form-page">
                 <h2>Activiteiten</h2>
                 <div>
                     <input type="search" placeholder="Zoek een activiteit" onChange={() => setSearch(search)}/>
@@ -72,13 +71,11 @@ export default function ListActivity() {
                                     {activity.date}
                                 </div>
                                 <br/>
-                                <AcceptActivity/>
                             </div>
                         </div>
                     ))}
                     </ul>
                 </div>
-                )}
             </div>
             }
         </div>

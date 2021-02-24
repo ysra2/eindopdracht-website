@@ -1,36 +1,36 @@
 import React, {useEffect, useState} from "react";
-import axios from "../services/axios.instance";
+import axios from "../../services/axios.instance";
 import {InfoWindow, Marker} from "@react-google-maps/api";
-import AcceptActivity from "./activity/AcceptActivity";
+import AcceptActivity from "../AcceptActivity";
 
 
-export default function AddMarker() {
+function AddMarker() {
     const [places, setPlaces] = useState([]);
     const [selected, setSelected] = useState([]);
 
-    useEffect(() =>{
-          axios.get(`/map/map`)
-            .then((response) =>{
+    useEffect(() => {
+        axios.get(`/map/map`)
+            .then((response) => {
                 setPlaces(response.data)
                 const {lat, lng} = response.data
                 console.log(response.data)
                 console.log(lat, lng)
-          })
-          //     .then((response) =>{
-          //     setSelected(response.data)
-          //     const info = response.data
-          //     console.log(info)
-          // })
+            })
+            //     .then((response) =>{
+            //     setSelected(response.data)
+            //     const info = response.data
+            //     console.log(info)
+            // })
 
-        .catch((e) =>
-                          console.error(e))
+            .catch((e) =>
+                console.error(e))
 
-    },[]);
+    }, []);
 
 
-    return(
+    return (
         <>
-            {places.map((marker, i) =>(
+            {places.map((marker, i) => (
                 <Marker
                     key={i}
                     position={{lat: marker.lat, lng: marker.lng}}
@@ -39,7 +39,7 @@ export default function AddMarker() {
                     }}
 
                 />
-               ))}
+            ))}
 
             {selected ? (<InfoWindow
                     position={{lat: selected?.lat || 51.451441, lng: selected?.lng || 5.486014}}
@@ -56,11 +56,12 @@ export default function AddMarker() {
                         <AcceptActivity/>
                     </div>
                 </InfoWindow>
-            ): null}
-
+            ) : null}
 
 
         </>
     );
 
 }
+
+export default AddMarker;
