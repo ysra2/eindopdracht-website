@@ -43,11 +43,10 @@ export default function ListActivity() {
                     Meld je aan voor één of meerdere activiteiten
                 </div>
 
-                <div>
-                    <ul className="form-page">
+                <div className="form-page">
                     {filterActivities.map((activity, i) =>(
                         <div className="form"
-                            key={i} {...activity}>
+                            key={i} >
                             <div>
                                 <div>
                                     <h4>Sportactiviteit: </h4>
@@ -82,7 +81,6 @@ export default function ListActivity() {
                             </div>
                         </div>
                     ))}
-                    </ul>
                 </div>
             </div>
             }
