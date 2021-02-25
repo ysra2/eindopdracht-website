@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
@@ -16,7 +16,7 @@ function AuthContextProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{authState}}>
+        <AuthContext.Provider value={{authState, setAuthState}}>
             {authState.status === 'done' && children}
             {authState.status === 'pending' && <p>Loading...</p>}
         </AuthContext.Provider>
