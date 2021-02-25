@@ -1,24 +1,32 @@
 import React, {useEffect, useState} from "react";
 import axios from "../services/axios.instance"
+import AcceptActivity from "./AcceptActivity";
 
 export default function ListActivity() {
     const [activity, setActivity] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
-
+    const [filterActivities, setFilterActivities] = useState([])
 
     useEffect(() =>{
+        setLoading(true);
         axios.get(`/activity`)
             .then((response) =>{
-                setActivity(response.data);
-                console.log(response.data);
+                setActivity(response.data)
                 setLoading(false);
             })
             .catch(error =>{
                 console.log(error)
-            })
+            });
     },[])
 
+    useEffect(() =>{
+        setFilterActivities(
+            activity.filter((activity) =>
+            activity.activityName.toLowerCase().includes(search.toLowerCase())
+        )
+        );
+    },[search, activity])
 
     return (
         <div>
@@ -28,9 +36,8 @@ export default function ListActivity() {
             <div className="form-page">
                 <h2>Activiteiten</h2>
                 <div>
-                    <input type="search" placeholder="Zoek een activiteit" onChange={() => setSearch(search)}/>
-                    <button type="/button" >
-                        Zoek</button>
+                    <input type="text" placeholder="Zoek een activiteit"
+                           onChange={(event) => setSearch(event.target.value)}/>
                 </div>
                 <div> Hier ziet u een overzicht van alle activiteiten in Eindhoven.
                     Meld je aan voor één of meerdere activiteiten
@@ -38,9 +45,9 @@ export default function ListActivity() {
 
                 <div>
                     <ul className="form-page">
-                    {activity.map((activity, i) =>(
+                    {filterActivities.map((activity, i) =>(
                         <div className="form"
-                            key={i}>
+                            key={i} {...activity}>
                             <div>
                                 <div>
                                     <h4>Sportactiviteit: </h4>
@@ -71,6 +78,7 @@ export default function ListActivity() {
                                     {activity.date}
                                 </div>
                                 <br/>
+                                <AcceptActivity/>
                             </div>
                         </div>
                     ))}
