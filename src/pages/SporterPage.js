@@ -9,13 +9,19 @@ export default function SporterPage() {
                 <h4>
                     Hier vind u een overzicht van alle sportactiviteiten in Eindhoven
                 </h4>
-                <Link to="/list">
+                <div>
+                <Link to="/activiteiten">
                     <button>Bekijk Activiteiten</button>
                 </Link>
-
-
+                </div>
+                <br/>
                 <div>
-                <h5 >
+                <Link to="/sportactiviteiten">
+                    <button>Bekijk geregistreerde activiteiten</button>
+                </Link>
+                </div>
+                <div>
+                <h5>
                     Door op de Marker van de Kaart te drukken ziet u welke sportactiviteit plaatsvind en waar het gelokaliseerd is.
                     Kunt vanuit de kaart meteen aanmelden voor een sportactiviteit.
 

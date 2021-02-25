@@ -1,13 +1,18 @@
-import React  from "react";
-import useForm from "../useForm";
-import validate from "../validateInfo";
+import React, {useEffect, useRef} from "react";
+import useForm from "../form/useForm";
+import validate from "../form/validateInfo";
 import AuthService from "../../services/auth.service"
 
 
-function Login({history}){
-    const {handleChange, formData, errors, setSuccessful, setErrors, setMessage} =
+function Login(props){
+    const {handleChangePT, formData, errors, setSuccessful, setErrors, setMessage} =
         useForm(submit, validate);
 
+    const mountRef = useRef(false)
+
+    useEffect(() => {
+        return () => { mountRef.current = true }
+    }, []);
 
     function submit() {
         console.log("Succesvol geregistreerd");
@@ -21,18 +26,18 @@ function Login({history}){
         setSuccessful(true);
 
 
-        AuthService.login(
-            formData.username,
-            formData.password,
-        ).then(
-            (response) => {
-                console.log(response);
-                history.push('/profile');
-                setSuccessful(true);
-            });
+                 AuthService.login(
+                     formData.username,
+                     formData.password,
+                 ).then(
+                     (response) => {
+                         if(!mountRef.current){
+                         console.log(response);
+                         props.history.push('/profile');
+                         setSuccessful(true);
+                     }});
 
-    };
-
+             }
 
     return(
         <div className="form-page">
@@ -43,13 +48,13 @@ function Login({history}){
             <div>
                 <label >Email</label>
                 <input id="username" type="email" placeholder="Voer hier uw emailadres in"
-                       value={formData.username} onChange={handleChange}/>
+                       value={formData.username} onChange={handleChangePT}/>
                 {errors.username && <p>{errors.username}</p>}
             </div>
             <div>
                 <label>Password</label>
                 <input id="password" type="password" placeholder="Voer hier uw wachtwoord in"
-                       value={formData.password} onChange={handleChange}/>
+                       value={formData.password} onChange={handleChangePT}/>
                 {errors.password && <p>{errors.password}</p>}
             </div>
             {/*<div>*/}

@@ -5,26 +5,22 @@ import AuthService from "../services/auth.service";
 import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
+    const [trainerPage, setTrainerPage] = useState(false);
+    const [sporterPage, setSporterPage] = useState(false);
+    const [adminPage, setAdminPage] = useState(false);;
     const [currentUser, setCurrentUser] = useState(undefined);
-    const [currentTrainer, setCurrentTrainer] = useState(false);
-    const [currentSporter, setCurrentSporter] = useState(false);
 
-    useEffect(()=>{
+
+    useEffect(() =>{
         const user = AuthService.getCurrentUser();
-        if (user){
-            setCurrentUser(user)
+        if(user){
+            setCurrentUser(user);
+            setTrainerPage(user.roles.includes(`ROLE_TRAINER`));
+            setSporterPage(user.roles.includes(`ROLE_SPORTER`));
+            setAdminPage(user.roles.includes(`ROLE_ADMIN`));
         }
-        const trainer = AuthService.getCurrentTrainer();
-        if(trainer){
-            setCurrentTrainer(trainer)
-        }
+    },[])
 
-        const sporter = AuthService.getCurrentSporter();
-        if(sporter){
-            setCurrentSporter(sporter)
-        }
-
-    }, [])
 
     const logOut = () =>{
         AuthService.logout()
@@ -45,10 +41,30 @@ function NavBar() {
                     <img src={logo} alt="trainfast" className="logo"/>
                     <div>
                     <ul>
-                        <li><a href="/" className="active">Home</a></li>
+
+                        {trainerPage &&(
+                            <li><a href="/trainer">Trainer</a></li>
+                        )}
+
+                        {sporterPage &&(
+                            <li><a href="/sporter">Sporter</a></li>
+                        )}
+                        {adminPage &&(
+                            <li><a href="/admin">Admin</a></li>
+                        )}
+
+                        {currentUser &&(
+                            <li/>
+                        )}
+
 
                         {currentUser ? (
                             <div>
+                                <li>
+                                    <a href="/profile" >
+                                        {currentUser.firstname}
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="/" onClick={logOut}>
                                         Logout
@@ -57,8 +73,8 @@ function NavBar() {
                             </div>
                         ):(
                                 <ul>
-                                    <li><a href="/login/trainer">Trainer</a></li>
-                                    <li><a href="/login/sporter">Sporter</a></li>
+                                    <li><a href="/" className="active">Home</a></li>
+                                    <li><a href="/login">Login</a></li>
                                 </ul>
                         )}
 

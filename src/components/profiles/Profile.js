@@ -3,7 +3,7 @@ import AuthService from "../../services/auth.service";
 import {Link} from "react-router-dom";
 
 const Profile = () => {
-    const currentUser = AuthService.getCurrentSporter();
+    const currentUser = AuthService.getCurrentUser();
 
     return(
         <div className="form-page">
@@ -11,11 +11,6 @@ const Profile = () => {
                 <h3>
                     Welkom:
                     <strong>{currentUser.firstname}</strong>
-                    <Link to="/sporter">
-                        <button type="button">
-                            Ga naar de sporter pagina
-                        </button>
-                    </Link>
                 </h3>
             </div>
             <p>

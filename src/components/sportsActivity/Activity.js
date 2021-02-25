@@ -2,29 +2,23 @@ import React, { useState } from 'react'
 import OverviewActivity from './OverviewActivity'
 import AddActivityForm from "./AddActivityForm";
 import UpdateActivityForm from "./UpdateActivityForm";
-import authHeader from "../../services/auth-header";
 import axios from "../../services/axios.instance";
-import Maps from "../map/Maps";
 
 const App = () => {
-    const [ activity, setActivity ] = useState("")
     const [ currentActivity, setCurrentActivity ] = useState({
         activityId: null,
         activityName: "",
         nameTrainer: "",
         address: "",
         zipcode: "",
-
         city: "",
         date: "",
         time: ""})
     const [ editing, setEditing ] = useState(false)
     const [post, setPost] = useState([]);
 
-    // CRUD operations
-
-    const deleteActivity = (activityId) => {
-        return axios.delete(`/activity/${activityId}`, activity.activityId)
+    const deleteActivity = activityId => {
+        return axios.delete(`/activity/trainer/${activityId}`, currentActivity.activityId)
             .then(response => {
                 const del = post.filter(activity => activityId !== activity.activityId)
                 setPost(del)
@@ -34,30 +28,26 @@ const App = () => {
             ))
     }
 
-    const updateActivity = (activityId, updatedActivity) => {
-        setEditing(false)
-        return axios.put(`/activity/${updateActivity.activityId}`,
-            {updateActivity})
-            .then(response => {
-                setPost(post.map(activity => (activity.activityId === activityId ? updatedActivity : activity)))
-                console.log(response);
-            }).catch(e => (
-                console.log(e)
-            ))
+    const editRow = (activityId) => {
+        setEditing(true)
+        setCurrentActivity({
+            activityId: currentActivity.activityId,
+            activityName: currentActivity.activityName,
+            nameTrainer: currentActivity.nameTrainer,
+            address: currentActivity.address,
+            zipcode: currentActivity.zipcode,
+            city: currentActivity.city,
+            date: currentActivity.date,
+            time: currentActivity.time
+        })
+        const set = post.filter(activity => activityId !== activity.activityId)
+        setPost(set)
     }
 
-    const editRow = user => {
-        setEditing(true)
-        setActivity({
-            activityId: activity.activityId,
-            activityName: activity.activityName,
-            nameTrainer: activity.nameTrainer,
-            address: activity.address,
-            zipcode: activity.zipcode,
-            city: activity.city,
-            date: activity.date,
-            time: activity.time
-        })
+    const updateActivity = (activityId, updatedActivity) => {
+        setEditing(false)
+        setPost(post.map((activity) => (activity.activityId === activityId ? updatedActivity : activity)))
+
     }
 
     return (
@@ -80,13 +70,14 @@ const App = () => {
                     ) : (
                         <div className="form">
                             <h2>Voeg training toe</h2>
-                            <AddActivityForm />
+                            <AddActivityForm currentActivity={currentActivity} />
                         </div>
                     )}
                 </div>
                 <div className="form">
                     <h2>Overzicht Activiteiten</h2>
-                    <OverviewActivity activity={activity} editRow={editRow} deleteActivity={deleteActivity} />
+                    <OverviewActivity currentActivity={currentActivity}
+                                      editRow={editRow} deleteActivity={deleteActivity} />
                 </div>
             </div>
         </div>

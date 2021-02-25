@@ -1,12 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
+import axios from "../../services/axios.instance";
 
-const UpdateActivityForm = props => {
-    const [activity, setActivity] = useState(props.currentActivity)
-
-    useEffect(
-        () => {
-            setActivity(props.currentActivity)
-        }, [props])
+const UpdateActivityForm = (props) => {
+    const [ activity, setActivity ] = useState(props.currentActivity)
 
     const handleInputChange = event => {
         const {id, value} = event.target
@@ -14,22 +10,44 @@ const UpdateActivityForm = props => {
         setActivity({...activity, [id]: value})
     }
 
+    const update = (activityId) => {
+        return axios.put(`/activity/trainer/${activityId}`,{
+            activityName: activity.activityName,
+            nameTrainer: activity.nameTrainer,
+            address: activity.address,
+            zipcode: activity.zipcode,
+            city: activity.city,
+            date: activity.date,
+            time: activity.time
+        })
+            .then(response => {
+            setActivity({...activity})
+                console.log(response);
+            }).catch(e => (
+                console.log(e)
+            ))
+    }
+
+
     return (
         <div className="form-page">
-            <form
+            <form onSubmit={event => {
+                event.preventDefault()
+                props.updateActivity(activity.activityId, activity)
+            }}
                 className="form">
                 <label className="title">
                     Training wijzigen
                 </label>
                 <div>
                     <label>Sportactiviteit</label>
-                    <input id="activityName" placeholder="Sportactiviteit"
+                    <input id="activityName" type="activityName" placeholder="Sportactiviteit"
                            value={activity.activityName} onChange={handleInputChange}/>
 
                 </div>
                 <div>
                     <label>Naam Trainer</label>
-                    <input id="nameTrainer" placeholder="Naam Trainer"
+                    <input id="nameTrainer" type="nameTrainer" placeholder="Naam Trainer"
                            value={activity.nameTrainer} onChange={handleInputChange}/>
 
                 </div>
@@ -62,12 +80,7 @@ const UpdateActivityForm = props => {
                            value={activity.date} onChange={handleInputChange}/>
 
                 </div>
-                <button
-                    onClick={event => {
-                        event.preventDefault()
-
-                        props.updateActivity(activity.activityId, activity)
-                    }}>
+                <button onClick={()=>update()}>
                     Wijzig sportactiviteit
                 </button>
                 <button onClick={() => props.setEditing(false)} className="button muted-button">

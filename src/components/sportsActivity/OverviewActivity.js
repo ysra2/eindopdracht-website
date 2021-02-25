@@ -23,8 +23,8 @@ const OverviewActivity = (props) => {
         <>
             <div className="form-page">
                 {post.length > 0 ? (
-                    post.map(activity => (
-                        <div key={activity.id} className="form">
+                    post.map((activity, index) => (
+                        <div key={index} className="form">
                             <div hidden>{activity.activityId}</div>
                             <div>
                                 <h4>Sportactiviteit: </h4>
@@ -56,9 +56,9 @@ const OverviewActivity = (props) => {
                                 {activity.date}
                             </div>
                             <div>
-                                <button
+                                <button value={activity.activityId}
                                     onClick={() => {
-                                        props.editRow(activity)
+                                        props.editRow(activity.activityId)
                                     }}
                                 >
                                     Wijzig Activiteit
