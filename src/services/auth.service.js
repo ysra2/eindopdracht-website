@@ -2,7 +2,7 @@ import axios from "./axios.instance";
 
 const registerSporter = async (firstName, lastName, username, email, password) => {
     return await axios
-        .post(  "auth/signup", {
+        .post("auth/signup", {
             firstName,
             lastName,
             username,
@@ -10,42 +10,28 @@ const registerSporter = async (firstName, lastName, username, email, password) =
             password,
             role: ["sporter"]
 
-    });
+        });
 };
 
 const registerTrainer = async (firstName, lastName, username, email, password) => {
     return await axios
-        .post( "auth/signup", {
-        firstName,
-        lastName,
-        username,
-        email,
-        password
-
-    });
-};
-
-const login = async (username, password) => {
-    return await axios
-        .post("auth/signin", {
+        .post("auth/signup", {
+            firstName,
+            lastName,
             username,
+            email,
             password,
-        })
-        .then((result) => {
-            if (result.data.accessToken) {
-                localStorage.setItem("user_id", JSON.stringify(result.data));
-            }
-            return result.data;
+            role: ["trainer"]
+
         });
 };
 
-
-const loginPT = async (username, password) => {
+const login = async (username, password, role) => {
     return await axios
         .post("auth/signin", {
             username,
             password,
-            role:["trainer"]
+            role
         })
         .then((result) => {
             if (result.data.accessToken) {
@@ -64,13 +50,6 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user_id"));
 };
 
-const getCurrentSporter = () => {
-    return JSON.parse(localStorage.getItem("user_id"));
-};
-const getCurrentTrainer = () => {
-    return JSON.parse(localStorage.getItem("user_id"));
-};
-
 const getCurrentActivity = () => {
     return JSON.parse(localStorage.getItem("activities"));
 };
@@ -80,10 +59,7 @@ export default {
     registerTrainer,
     registerSporter,
     login,
-    loginPT,
     logout,
     getCurrentUser,
-    getCurrentTrainer,
-    getCurrentSporter,
     getCurrentActivity
 };
