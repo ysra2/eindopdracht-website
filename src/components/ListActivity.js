@@ -33,9 +33,9 @@ export default function ListActivity() {
             {loading &&
             <p>Loading...</p>}
             {!loading &&
-            <div className="form-page">
+            <div className="form">
                 <h2>Activiteiten</h2>
-                <div>
+                <div className="search-box">
                     <input type="text" placeholder="Zoek een activiteit"
                            onChange={(event) => setSearch(event.target.value)}/>
                 </div>
