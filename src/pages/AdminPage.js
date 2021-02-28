@@ -8,6 +8,8 @@ export default function AdminPage() {
         <>
             <div>
                 <DeleteAccount/>
+            </div>
+            <div>
                 <DeleteActivity/>
             </div>
         </>
@@ -16,12 +18,6 @@ export default function AdminPage() {
 }
 
 const DeleteAccount = () => {
-    const [account, setAccount] = useState({
-        firstname: "",
-        lastname: "",
-        username: "",
-        email: ""
-    })
     const [registeredAccounts, setRegisteredAccounts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -30,7 +26,6 @@ const DeleteAccount = () => {
         axios.get(`/user_sports/accounts`)
             .then((response) => {
                 setRegisteredAccounts(response.data)
-                setAccount(response.data)
                 setLoading(false);
             })
             .catch(error => {
@@ -38,10 +33,10 @@ const DeleteAccount = () => {
             });
     }, [])
 
-    const deleteRegisterAccount = (id) => {
-        return axios.delete(`/user_sports/admin/accounts/${id}`, account.id)
+    const deleteRegisterAccount = id => {
+        return axios.delete(`/user_sports/admin/accounts/${id}`, registeredAccounts.id)
             .then(response => {
-                const del = registeredAccounts.filter(account => id !== account.id)
+                const del = registeredAccounts.filter(account => id !== account.userId)
                 setRegisteredAccounts(del)
                 console.log(response);
             }).catch(e => (
@@ -61,12 +56,6 @@ const DeleteAccount = () => {
                         <div className="form"
                              key={i}>
                             <div>
-                               <div>
-                                  <Link to="/delete"><button
-                                      // onClick={() => deleteRegisterAccount(account.userId)}
-                                  >Overzicht Trainingen
-                                  </button></Link>
-                               </div>
                                 <br/>
                                 <div>{account.userId}</div>
                                 <div>
@@ -87,14 +76,13 @@ const DeleteAccount = () => {
                                 </div>
                                 <br/>
                                 <button
-                                    onClick={() => deleteRegisterAccount(account.id)}
+                                    onClick={() => deleteRegisterAccount(account.userId)}
                                 >Verwijder Account
                                 </button>
                             </div>
                         </div>
                     ))}
                 </div>
-
             </div>
             }
         </>
@@ -135,7 +123,7 @@ const DeleteActivity = () => {
                 <h2>Alle activiteiten</h2>
                 {sportActivity.map((activity, index) => (
                         <div key={index} className="form">
-                            <div hidden>{activity.activityId}</div>
+                            <div>{activity.activityId}</div>
                             <div>
                                 <h4>Sportactiviteit: </h4>
                                 {activity.activityName}
