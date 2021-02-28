@@ -3,16 +3,7 @@ import authHeader from "../../services/auth-header";
 import axios from "../../services/axios.instance";
 
 const AddActivityForm = (props) => {
-    const [activity, setActivity] = useState({
-        activityId: null,
-        activityName: "",
-        nameTrainer: "",
-        address: "",
-        zipcode: "",
-        city: "",
-        date: "",
-        time: ""
-    })
+    const [activity, setActivity] = useState(props.currentActivity)
 
     const handleInputChange = (event) => {
         const { id, value } = event.target
@@ -25,8 +16,9 @@ const AddActivityForm = (props) => {
         const trainerId = authHeader().id;
 
         console.log(trainerId);
-        return axios.post(`/activity/trainer/${trainerId}`,
+        return await axios.post(`/activity/trainer/${trainerId}`,
             {
+                activityId: activity.activityId,
                 activityName: activity.activityName,
                 nameTrainer: activity.nameTrainer,
                 address: activity.address,
@@ -34,12 +26,12 @@ const AddActivityForm = (props) => {
                 city: activity.city,
                 date: activity.date,
                 time: activity.time
-            }, )
+            } )
             .then((response) => {
                 if (trainerId === trainerId) {
-                    localStorage.setItem("activities", JSON.stringify(response.data));
+                    localStorage.setItem(["activity_id"], JSON.stringify(response.data));
                     setActivity(response.data);
-                    console.log(response);
+                    console.log(response.data);
                 }})
             .catch((error) => {
                 console.log(error);

@@ -1,8 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from "../../services/axios.instance";
 
 const UpdateActivityForm = (props) => {
     const [ activity, setActivity ] = useState(props.currentActivity)
+
+    useEffect(()=>{
+        setActivity(props.currentActivity)
+    },[props])
 
     const handleInputChange = event => {
         const {id, value} = event.target
@@ -19,10 +23,9 @@ const UpdateActivityForm = (props) => {
             city: activity.city,
             date: activity.date,
             time: activity.time
-        })
+        }, activityId)
             .then(response => {
-            setActivity({...activity})
-                console.log(response);
+                console.log(response.data);
             }).catch(e => (
                 console.log(e)
             ))
@@ -31,10 +34,8 @@ const UpdateActivityForm = (props) => {
 
     return (
         <div className="form-page">
-            <form onSubmit={event => {
-                event.preventDefault()
-                props.updateActivity(activity.activityId, activity)
-            }}
+            <form
+                // onSubmit={() => update()}
                 className="form">
                 <label className="title">
                     Training wijzigen
@@ -80,7 +81,9 @@ const UpdateActivityForm = (props) => {
                            value={activity.date} onChange={handleInputChange}/>
 
                 </div>
-                <button onClick={()=>update()}>
+                <button
+                    onClick={()=>update()}
+                >
                     Wijzig sportactiviteit
                 </button>
                 <button onClick={() => props.setEditing(false)} className="button muted-button">

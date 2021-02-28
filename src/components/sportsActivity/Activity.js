@@ -28,27 +28,21 @@ const App = () => {
             ))
     }
 
-    const editRow = (activityId) => {
+    const editRow = (activity) => {
         setEditing(true)
         setCurrentActivity({
-            activityId: currentActivity.activityId,
-            activityName: currentActivity.activityName,
-            nameTrainer: currentActivity.nameTrainer,
-            address: currentActivity.address,
-            zipcode: currentActivity.zipcode,
-            city: currentActivity.city,
-            date: currentActivity.date,
-            time: currentActivity.time
+            activityName: activity.activityName,
+            nameTrainer: activity.nameTrainer,
+            address: activity.address,
+            zipcode: activity.zipcode,
+            city: activity.city,
+            date: activity.date,
+            time: activity.time
         })
-        const set = post.filter(activity => activityId !== activity.activityId)
-        setPost(set)
-    }
-
-    const updateActivity = (activityId, updatedActivity) => {
-        setEditing(false)
-        setPost(post.map((activity) => (activity.activityId === activityId ? updatedActivity : activity)))
 
     }
+
+
 
     return (
         <div >
@@ -61,10 +55,9 @@ const App = () => {
                         <div className="form">
                             <h2>Wijzig Training</h2>
                             <UpdateActivityForm
-                                editing={editing}
                                 setEditing={setEditing}
                                 currentActivity={currentActivity}
-                                updateActivity={updateActivity}
+                                // updateActivity={updateActivity}
                             />
                         </div>
                     ) : (

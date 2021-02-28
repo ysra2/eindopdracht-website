@@ -9,7 +9,7 @@ const OverviewActivity = (props) => {
         const trainerId = authHeader().id;
         axios.get(`/user_sports/trainer/${trainerId}`)
             .then((response) => {
-                setPost(response.data["activities"]);
+                setPost(response.data["activitiesAsTrainer"]);
                 console.log();
 
             })
@@ -25,7 +25,7 @@ const OverviewActivity = (props) => {
                 {post.length > 0 ? (
                     post.map((activity, index) => (
                         <div key={index} className="form">
-                            <div hidden>{activity.activityId}</div>
+                            <div>{activity.activityId}</div>
                             <div>
                                 <h4>Sportactiviteit: </h4>
                                 {activity.activityName}
@@ -56,7 +56,7 @@ const OverviewActivity = (props) => {
                                 {activity.date}
                             </div>
                             <div>
-                                <button value={activity.activityId}
+                                <button
                                     onClick={() => {
                                         props.editRow(activity.activityId)
                                     }}
