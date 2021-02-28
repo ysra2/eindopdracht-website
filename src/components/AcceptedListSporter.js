@@ -11,7 +11,7 @@ const AcceptedListSporter = () => {
 
     useEffect(() => {
         const sporterId = authHeader().id;
-        axios.get(`/user_sports/sporter/${sporterId}`)
+        axios.get(`/user_sports/account/${sporterId}`)
             .then((response) => {
                 setPost(response.data["activitiesTypeTrainer"]);
                 console.log();

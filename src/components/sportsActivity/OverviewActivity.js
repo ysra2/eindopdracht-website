@@ -7,7 +7,7 @@ const OverviewActivity = (props) => {
 
     useEffect(() => {
         const trainerId = authHeader().id;
-        axios.get(`/user_sports/trainer/${trainerId}`)
+        axios.get(`/user_sports/account/${trainerId}`)
             .then((response) => {
                 setPost(response.data["activitiesAsTrainer"]);
                 console.log();

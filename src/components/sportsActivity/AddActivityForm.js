@@ -19,7 +19,7 @@ const AddActivityForm = (props) => {
         const trainerId = authHeader().id;
 
         console.log(trainerId);
-        return await axios.post(`/activity/trainer/${trainerId}`,
+        return await axios.post(`/activity/account/${trainerId}`,
             {
                 activityId: activity.activityId,
                 activityName: activity.activityName,
