@@ -6,7 +6,6 @@ import axios from "../../services/axios.instance";
 
 const App = () => {
     const [ currentActivity, setCurrentActivity ] = useState({
-        activityId: null,
         activityName: "",
         nameTrainer: "",
         address: "",

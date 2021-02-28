@@ -19,9 +19,8 @@ const AddActivityForm = (props) => {
         const trainerId = authHeader().id;
 
         console.log(trainerId);
-        return await axios.post(`/activity/account/${trainerId}`,
+        return await axios.post(`/activity/trainer/${trainerId}`,
             {
-                activityId: activity.activityId,
                 activityName: activity.activityName,
                 nameTrainer: activity.nameTrainer,
                 address: activity.address,
@@ -31,8 +30,8 @@ const AddActivityForm = (props) => {
                 time: activity.time
             } )
             .then((response) => {
-                if (trainerId === trainerId) {
-                    localStorage.setItem(["activity_id"], JSON.stringify(response.data));
+                if (trainerId) {
+                    localStorage.setItem(["activities"], JSON.stringify(response.data));
                     setActivity(response.data);
                     console.log(response);
                 }})

@@ -1,6 +1,6 @@
 import React from "react";
 import './styles/style.scss';
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import RegisterTrainer from "./components/register/RegisterTrainer";
 import RegisterSporter from "./components/register/RegisterSporter";
 import Login from "./components/login/Login";
@@ -17,16 +17,16 @@ import AdminPage from "./pages/AdminPage";
 //dat was zeer complex. Vandaar dat ervoor is gekozen om render te gebruiken bij elke de Trainer/Sporter/Admin pagina's
 //Dat is helaas ook niet gelukt alleen geeft het wel de melding 403: "Forbidden" weer vanuit te backend.
 
-function Roles() {
-
-    const role = localStorage.getItem('user_id')
-    if (role && role.roles[0]) {
-        return{
-
-            roles: role.roles
-        }
-    }
-}
+// function Roles() {
+//
+//     const role = localStorage.getItem('user_id')
+//     if (role && role.roles[0]) {
+//         return{
+//
+//             roles: role.roles
+//         }
+//     }
+// }
 
 function App() {
     return (
