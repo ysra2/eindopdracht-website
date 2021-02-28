@@ -8,15 +8,16 @@ In het mapje Eindopdracht-FSD-NOVI-YK bevinden zich de volgende documenten:
 
  - Functioneel ontwerp
  - Technisch ontwerp
+ - Prototype
+ - Verantwoordingsdocument
  - Map Frontend-Trainfast
  - Map Backend-TrainFast 
+  
 
 In de Frontend-Trainfast bestand zijn de volgende documenten te vinden: .
 
 Daarin zijn de volgende documenten te vinden:
- - Installatiehandleiding
- - Prototype
- - Verantwoordingsdocument front-end
+ - Installatiehandleiding front-end
  - Broncode
  
  
