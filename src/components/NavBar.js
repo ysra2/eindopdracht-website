@@ -28,7 +28,7 @@ function NavBar() {
         <header className="header">
             <nav className="navbar">
                 {/*//Hier komt nog een image dat hetzelfde is als een home button*/}
-                <img src={logo} alt="trainfast" className="logo"/>
+                <a href="/"><img src={logo} alt="trainfast" className="logo"/></a>
                 <div>
                     <ul>
                         <div>
