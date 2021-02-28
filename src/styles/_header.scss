@@ -79,7 +79,7 @@ header{
   display: none;
 }
 
-@media (max-width: 532px) {
+@media (max-width: 781px) {
   .checkBtn{
     display: block;
   }
@@ -98,22 +98,21 @@ header{
     display: block;
     margin: 50px 0;
     line-height: 30px;
-    }
+  }
 
-    header ul li a {
-      font-size: 20px;
-      right: 10%;
-    }
+  header ul li a {
+    font-size: 20px;
+    right: 10%;
+  }
 
-    a:active, a:hover {
-      background: none;
-      color: purple;
-    }
+  a:active, a:hover {
+    background: none;
+    color: purple;
+  }
 
   #check:checked ~ ul{
     left: -0;
   }
 
 }
-
 

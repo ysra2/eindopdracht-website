@@ -1,12 +1,7 @@
-//body{
-//  background: $primaryBtn;
-//}
-
 .form-page {
   width: 500px;
   padding: 8% 0 0;
   margin: auto;
-  //display: inline-flex;
 }
 
 .form{
@@ -35,6 +30,7 @@ label.title{
   box-sizing: border-box;
   font-size: 14px;
   text-transform: uppercase;
+  display: flex;
 }
 
 .form p{
@@ -52,7 +48,7 @@ label.title{
   color: black;
   font-size: 14px;
   -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
