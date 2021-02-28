@@ -57,9 +57,6 @@ function Login(props){
                        value={formData.password} onChange={handleChangePT}/>
                 {errors.password && <p>{errors.password}</p>}
             </div>
-            {/*<div>*/}
-            {/*    <input type="checkbox"/><span>Wachtwoord onthouden</span>*/}
-            {/*</div>*/}
             <button type="submit"  onClick={loginSubmit} >
                 Login
             </button>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import './styles/style.scss';
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import RegisterTrainer from "./components/register/RegisterTrainer";
@@ -9,32 +9,14 @@ import TrainerPage from "./pages/TrainerPage";
 import HomePage from "./pages/HomePage";
 import SporterPage from "./pages/SporterPage";
 import ListActivity from "./components/ListActivity";
-import {AuthContext} from "./context/AuthContext";
-import AcceptedListSporter from "./components/AcceptedListSporter";
 import DeleteActivity from "./pages/AdminPage";
 import NavBar from "./components/NavBar";
 import AdminPage from "./pages/AdminPage";
-import authHeader from "./services/auth-header";
 
-
-
-// function Trainer() {
-//     const account = localStorage.getItem('user_id')
-//     if (account && account.accessToken[0]) {
-//         return {
-//             Authorization: 'Bearer ' + account.accessToken,
-//         };
-//     }
-//     console.log(trainer)
-// }
-//
-//
-// function Sporter() {
-//     const sporter = localStorage.getItem('user_id')
-//     if (sporter && sporter.roles[0]) {
-//         return true;
-//     }
-// }
+//De private Routes werkt helaas niet naar behoren. In deze situatie is er gekeken om een privateroute te maken,
+//dat was zeer complex. Vandaar dat ervoor is gekozen om render te gebruiken bij elke de Trainer/Sporter/Admin pagina's
+//Dat is helaas ook niet gelukt alleen geeft het wel de melding 403: "Forbidden" weer vanuit te backend.
+//Er is wel een connectie met de backend alleen is het niet gelukt om de routes naar de pagina's te beveiligen ivm deadline
 
 function Roles() {
 
@@ -48,7 +30,6 @@ function Roles() {
 }
 
 function App() {
-
     return (
         <>
             <NavBar/>
@@ -77,7 +58,6 @@ function App() {
                            }}
                     />
                     <Route path="/activiteiten" component={ListActivity}/>
-                    <Route path="/sportactiviteiten" component={AcceptedListSporter}/>
                     <Route path="delete" component={DeleteActivity}/>
                     <Route path="*" component={() => "404 NOT FOUND"}/>
                 </Switch>

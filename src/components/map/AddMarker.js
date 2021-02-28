@@ -16,11 +16,6 @@ function AddMarker() {
                 console.log(response.data)
                 console.log(lat, lng)
             })
-            //     .then((response) =>{
-            //     setSelected(response.data)
-            //     const info = response.data
-            //     console.log(info)
-            // })
 
             .catch((e) =>
                 console.error(e))

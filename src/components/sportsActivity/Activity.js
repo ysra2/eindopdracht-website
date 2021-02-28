@@ -57,7 +57,6 @@ const App = () => {
                             <UpdateActivityForm
                                 setEditing={setEditing}
                                 currentActivity={currentActivity}
-                                // updateActivity={updateActivity}
                             />
                         </div>
                     ) : (

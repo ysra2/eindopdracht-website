@@ -8,8 +8,7 @@ const useForm = (callBack, validate) => {
         lastName: "",
         username: "",
         email: "",
-        password: "",
-        // password2: ""
+        password: ""
     })
 
 
@@ -150,7 +149,7 @@ const useForm = (callBack, validate) => {
         handleSubmitSporter,
         errors,
         message,
-        successful, setSuccessful, setErrors, setMessage};
+        successful, setSuccessful, setErrors, setMessage, serverErrors};
 };
 
 export default useForm;

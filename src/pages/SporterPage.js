@@ -14,12 +14,6 @@ export default function SporterPage() {
                     <button>Bekijk Activiteiten</button>
                 </Link>
                 </div>
-                <br/>
-                <div>
-                <Link to="/sportactiviteiten">
-                    <button>Bekijk geregistreerde activiteiten</button>
-                </Link>
-                </div>
                 <div>
                 <h5>
                     Door op de Marker van de Kaart te drukken ziet u welke sportactiviteit plaatsvind en waar het gelokaliseerd is.

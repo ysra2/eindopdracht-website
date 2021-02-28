@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import axios from "../services/axios.instance";
-import authHeader from "../services/auth-header";
 
 export default function AdminPage() {
     return (

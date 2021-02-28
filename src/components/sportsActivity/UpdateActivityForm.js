@@ -14,6 +14,8 @@ const UpdateActivityForm = (props) => {
         setActivity({...activity, [id]: value})
     }
 
+    //Put request werkt niet naar behoren, krijgt geen activityId. werkt wel als het hardcoded ingevuld wordt.
+    //Conclusie ==> update werkt niet!
     const update = (activityId) => {
         return axios.put(`/activity/trainer/${activityId}`,{
             activityName: activity.activityName,
