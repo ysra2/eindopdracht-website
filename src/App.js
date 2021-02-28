@@ -16,7 +16,6 @@ import AdminPage from "./pages/AdminPage";
 //De private Routes werkt helaas niet naar behoren. In deze situatie is er gekeken om een privateroute te maken,
 //dat was zeer complex. Vandaar dat ervoor is gekozen om render te gebruiken bij elke de Trainer/Sporter/Admin pagina's
 //Dat is helaas ook niet gelukt alleen geeft het wel de melding 403: "Forbidden" weer vanuit te backend.
-//Er is wel een connectie met de backend alleen is het niet gelukt om de routes naar de pagina's te beveiligen ivm deadline
 
 function Roles() {
 
@@ -40,23 +39,28 @@ function App() {
                     <Route path="/registreer/sporter" component={RegisterSporter}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/profile" component={Profile}/>
-                    <Route exact path="/trainer"
-                           render={() => {
-                               return Roles ?
-                                   <TrainerPage/> : <Redirect to="/"/>
-                           }}
-                    />
-                    <Route exact path="/sporter" render={() => {
-                        return Roles ?
-                            <SporterPage/> : <Redirect to="/"/>
-                    }}
-                    />
-                    <Route exact path="/admin"
-                           render={() => {
-                               return Roles ?
-                                   <AdminPage/> : <Redirect to="/" />
-                           }}
-                    />
+
+                    {/*<Route exact path="/trainer"*/}
+                    {/*       render={() => {*/}
+                    {/*           return Roles ?*/}
+                    {/*               <TrainerPage/> : <Redirect to="/"/>*/}
+                    {/*       }}*/}
+                    {/*/>*/}
+                    {/*<Route exact path="/sporter" render={() => {*/}
+                    {/*    return Roles ?*/}
+                    {/*        <SporterPage/> : <Redirect to="/"/>*/}
+                    {/*}}*/}
+                    {/*/>*/}
+                    {/*<Route exact path="/admin"*/}
+                    {/*       render={() => {*/}
+                    {/*           return Roles ?*/}
+                    {/*               <AdminPage/> : <Redirect to="/" />*/}
+                    {/*       }}*/}
+                    {/*/>*/}
+
+                    <Route exact path="/trainer" component={TrainerPage}/>
+                    <Route exact path="/sporter" component={SporterPage}/>
+                    <Route exact path="/admin" component={AdminPage}/>
                     <Route path="/activiteiten" component={ListActivity}/>
                     <Route path="delete" component={DeleteActivity}/>
                     <Route path="*" component={() => "404 NOT FOUND"}/>

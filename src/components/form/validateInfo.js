@@ -1,8 +1,8 @@
-export default function validateInfo(formData){
+export default function validateInfo(formData, activity){
     let errors = {}
 
 
-    //Register
+    //Register/Login
     if (!formData.firstName.trim()){
         errors.firstName = "Veld mag niet leeg zijn";
     }
@@ -34,6 +34,8 @@ export default function validateInfo(formData){
     } else if(formData.password2 !== formData.password){
         errors.password2 = "Wachtwoord komt niet overeen";
     }
+
+
 
     return errors;
 }

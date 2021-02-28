@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import authHeader from "../../services/auth-header";
 import axios from "../../services/axios.instance";
+import validate from "../sportsActivity/validateActivity";
 
 const AddActivityForm = (props) => {
     const [activity, setActivity] = useState(props.currentActivity)
+    const [errors, setErrors] = useState({})
 
     const handleInputChange = (event) => {
         const { id, value } = event.target
@@ -12,6 +14,7 @@ const AddActivityForm = (props) => {
 
     const createActivity =  async event => {
         event.preventDefault();
+        setErrors(validate(activity));
 
         const trainerId = authHeader().id;
 
@@ -31,7 +34,7 @@ const AddActivityForm = (props) => {
                 if (trainerId === trainerId) {
                     localStorage.setItem(["activity_id"], JSON.stringify(response.data));
                     setActivity(response.data);
-                    console.log(response.data);
+                    console.log(response);
                 }})
             .catch((error) => {
                 console.log(error);
@@ -50,6 +53,7 @@ const AddActivityForm = (props) => {
                 value={activity.activityName}
                 onChange={handleInputChange}
             />
+            {errors.activityName && <p>{errors.activityName}</p>}
             <label>Naam Trainer</label>
             <input
                 type="text"
@@ -57,6 +61,7 @@ const AddActivityForm = (props) => {
                 value={activity.nameTrainer}
                 onChange={handleInputChange}
             />
+            {errors.nameTrainer && <p>{errors.nameTrainer}</p>}
             <label>Adres</label>
             <input
                 type="text"
@@ -64,10 +69,12 @@ const AddActivityForm = (props) => {
                 value={activity.address}
                 onChange={handleInputChange}
             />
+            {errors.address && <p>{errors.address}</p>}
             <label>Postcode</label>
             <input
                 type="zipcode"
                 id="zipcode"
+                placeholder="Postcode (optioneel)"
                 value={activity.zipcode}
                 onChange={handleInputChange}
             />
@@ -78,6 +85,7 @@ const AddActivityForm = (props) => {
                 value={activity.city}
                 onChange={handleInputChange}
             />
+            {errors.city && <p>{errors.city}</p>}
             <label>Tijd</label>
             <input
                 type="time"
@@ -85,6 +93,7 @@ const AddActivityForm = (props) => {
                 value={activity.time}
                 onChange={handleInputChange}
             />
+            {errors.time && <p>{errors.time}</p>}
             <label>Datum</label>
             <input
                 type="date"
@@ -92,6 +101,7 @@ const AddActivityForm = (props) => {
                 value={activity.date}
                 onChange={handleInputChange}
             />
+            {errors.date && <p>{errors.date}</p>}
             <button onClick={createActivity}>Voeg Sportactiviteit toe</button>
         </form>
         </div>
