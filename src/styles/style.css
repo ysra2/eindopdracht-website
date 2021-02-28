@@ -116,6 +116,7 @@ img {
   display: block;
   transition: 0.5s ease;
   backface-visibility: hidden;
+  background-color: #25c990;
 }
 
 footer {
@@ -224,7 +225,6 @@ label.title {
   box-sizing: border-box;
   font-size: 14px;
   text-transform: uppercase;
-  display: flex;
 }
 
 .form p {
@@ -242,7 +242,7 @@ label.title {
   color: black;
   font-size: 14px;
   -webkit-transition: all 0.3s ease;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -268,10 +268,10 @@ h1 {
 .search {
   position: absolute;
   top: 1rem;
-  left: 70%;
+  left: 80%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 250px;
+  max-width: 400px;
   border: none;
   z-index: 10;
 }
@@ -280,22 +280,6 @@ h1 {
   padding: 0.5rem;
   font-size: 1.5rem;
   width: 100%;
-}
-
-.map {
-  width: 50vw;
-  height: 80vh;
-  display: flex;
-}
-.map .search {
-  display: none;
-}
-.map .logomap {
-  float: right;
-  width: 250px;
-  height: 120px;
-  line-height: 80px;
-  display: flex;
 }
 
 @media (max-width: 958px) {
