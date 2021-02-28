@@ -94,6 +94,7 @@ const DeleteAccount = () => {
                         </div>
                     ))}
                 </div>
+
             </div>
             }
         </>
