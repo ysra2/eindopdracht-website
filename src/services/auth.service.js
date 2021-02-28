@@ -51,7 +51,7 @@ const getCurrentUser = () => {
 };
 
 const getCurrentActivity = () => {
-    return JSON.parse(localStorage.getItem("activities"));
+    return JSON.parse(localStorage.getItem(["activityId"]));
 };
 
 

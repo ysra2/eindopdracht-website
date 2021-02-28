@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import logo from "./assets/Logo.png"
-import {Link} from "react-router-dom";
 import AuthService from "../services/auth.service";
 import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
     const [trainerPage, setTrainerPage] = useState(false);
     const [sporterPage, setSporterPage] = useState(false);
-    const [adminPage, setAdminPage] = useState(false);;
+    const [adminPage, setAdminPage] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
 
 

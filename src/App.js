@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './styles/style.scss';
-import NavBar from "./components/NavBar";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import RegisterTrainer from "./components/register/RegisterTrainer";
 import RegisterSporter from "./components/register/RegisterSporter";
@@ -8,39 +7,82 @@ import Login from "./components/login/Login";
 import Profile from "./components/profiles/Profile";
 import TrainerPage from "./pages/TrainerPage";
 import HomePage from "./pages/HomePage";
-import Maps from "./components/map/Maps";
 import SporterPage from "./pages/SporterPage";
 import ListActivity from "./components/ListActivity";
-import {AuthContext, roles} from "./context/AuthContext";
-import AdminPage from "./pages/AdminPage";
+import {AuthContext} from "./context/AuthContext";
 import AcceptedListSporter from "./components/AcceptedListSporter";
-import PrivateRoute from "./components/PrivateRoute";
+import DeleteActivity from "./pages/AdminPage";
+import NavBar from "./components/NavBar";
+import AdminPage from "./pages/AdminPage";
+import authHeader from "./services/auth-header";
+
+
+
+// function Trainer() {
+//     const account = localStorage.getItem('user_id')
+//     if (account && account.accessToken[0]) {
+//         return {
+//             Authorization: 'Bearer ' + account.accessToken,
+//         };
+//     }
+//     console.log(trainer)
+// }
+//
+//
+// function Sporter() {
+//     const sporter = localStorage.getItem('user_id')
+//     if (sporter && sporter.roles[0]) {
+//         return true;
+//     }
+// }
+
+function Roles() {
+
+    const role = localStorage.getItem('user_id')
+    if (role && role.roles[0]) {
+        return{
+
+            roles: role.roles
+        }
+    }
+}
 
 function App() {
 
     return (
-        <AuthContext.Provider>
+        <>
             <NavBar/>
             <Router>
                 <Switch>
                     <Route exact path="/"><HomePage/></Route>
-
                     <Route path="/registreer/trainer" component={RegisterTrainer}/>
                     <Route path="/registreer/sporter" component={RegisterSporter}/>
-
                     <Route path="/login" component={Login}/>
                     <Route path="/profile" component={Profile}/>
-
-                    <PrivateRoute condition="admin" exact path="/admin"><AdminPage/></PrivateRoute>
-                    <PrivateRoute condition="trainer" exact path="/trainer"><TrainerPage/></PrivateRoute>
-                    <PrivateRoute condition="sporter" exact path="/sporter"><SporterPage/></PrivateRoute>
-                    <PrivateRoute condition="sporter" path="/activiteiten"><ListActivity/></PrivateRoute>
-                    <PrivateRoute condition="sporter" path="/sportactiviteiten"><AcceptedListSporter/></PrivateRoute>
-
+                    <Route exact path="/trainer"
+                           render={() => {
+                               return Roles ?
+                                   <TrainerPage/> : <Redirect to="/"/>
+                           }}
+                    />
+                    <Route exact path="/sporter" render={() => {
+                        return Roles ?
+                            <SporterPage/> : <Redirect to="/"/>
+                    }}
+                    />
+                    <Route exact path="/admin"
+                           render={() => {
+                               return Roles ?
+                                   <AdminPage/> : <Redirect to="/" />
+                           }}
+                    />
+                    <Route path="/activiteiten" component={ListActivity}/>
+                    <Route path="/sportactiviteiten" component={AcceptedListSporter}/>
+                    <Route path="delete" component={DeleteActivity}/>
                     <Route path="*" component={() => "404 NOT FOUND"}/>
                 </Switch>
             </Router>
-        </AuthContext.Provider>
+        </>
     );
 
 }

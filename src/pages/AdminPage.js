@@ -1,59 +1,48 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Maps from "../components/map/Maps";
 import axios from "../services/axios.instance";
-import AcceptActivity from "../components/AcceptActivity";
+import authHeader from "../services/auth-header";
 
 export default function AdminPage() {
-
     return (
-
         <>
-            <div className="form">
-                <h4>
-                    Hier vind u een overzicht van alle sporter en trainer accounts.
-                </h4>
-                <div>
-                    <DeleteTrainer/>
-                </div>
-                <div>
-                    <DeleteSporter/>
-                </div>
+            <div>
+                <DeleteAccount/>
+                <DeleteActivity/>
             </div>
-
         </>
     )
 
 }
 
-const DeleteTrainer = () =>{
-    const [ trainer, setTrainer ] = useState({
-        firstName: "",
-        lastName: "",
+const DeleteAccount = () => {
+    const [account, setAccount] = useState({
+        firstname: "",
+        lastname: "",
         username: "",
-        email: ""})
-    const [account, setAccount] = useState([]);
+        email: ""
+    })
+    const [registeredAccounts, setRegisteredAccounts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
         setLoading(true);
-        axios.get(`/user_sports/trainer`)
-            .then((response) =>{
+        axios.get(`/user_sports/accounts`)
+            .then((response) => {
+                setRegisteredAccounts(response.data)
                 setAccount(response.data)
-                setTrainer(response.data)
                 setLoading(false);
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error)
             });
-    },[])
+    }, [])
 
-
-    const deleteTrainerAccount = id => {
-        return axios.delete(`/user_sports/admin/trainer/${id}`, trainer.id)
+    const deleteRegisterAccount = (id) => {
+        return axios.delete(`/user_sports/admin/accounts/${id}`, account.id)
             .then(response => {
-                const del = account.filter(trainer => id !== trainer.id)
-                setAccount(del)
+                const del = registeredAccounts.filter(account => id !== account.id)
+                setRegisteredAccounts(del)
                 console.log(response);
             }).catch(e => (
                 console.log(e)
@@ -61,75 +50,78 @@ const DeleteTrainer = () =>{
     }
 
     return (
-        <div>
+        <>
             {loading &&
             <p>Loading...</p>}
             {!loading &&
             <div className="form">
-                <h2>Trainer Accounts</h2>
+                <h2>Alle Sporter en Trainer Accounts</h2>
                 <div className="form-page">
-                    {account.map((activity, i) =>(
+                    {registeredAccounts.map((account, i) => (
                         <div className="form"
-                             key={i} >
+                             key={i}>
                             <div>
-                                <div>{trainer.id}</div>
+                               <div>
+                                  <Link to="/delete"><button
+                                      // onClick={() => deleteRegisterAccount(account.userId)}
+                                  >Overzicht Trainingen
+                                  </button></Link>
+                               </div>
+                                <br/>
+                                <div>{account.userId}</div>
                                 <div>
                                     <h4>Voornaam: </h4>
-                                    {trainer.firstname}
+                                    {account.firstname}
                                 </div>
                                 <div>
                                     <h4>Achternaam: </h4>
-                                    {trainer.lastname}
+                                    {account.lastname}
                                 </div>
                                 <div>
                                     <h4>Gebruikersnaam: </h4>
-                                    {trainer.username}
+                                    {account.username}
                                 </div>
                                 <div>
                                     <h4>Email adres: </h4>
-                                    {trainer.email}
+                                    {account.email}
                                 </div>
                                 <br/>
                                 <button
-                                    onClick={() => deleteTrainerAccount(trainer.id)}
-                                >Verwijder Traineraccount</button>
+                                    onClick={() => deleteRegisterAccount(account.id)}
+                                >Verwijder Account
+                                </button>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
             }
-        </div>
+        </>
     )
 }
 
-const DeleteSporter = () =>{
-    const [ sporter, setSporter ] = useState({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: ""})
-    const [account, setAccount] = useState([]);
-    const [loading, setLoading] = useState(false);
+const DeleteActivity = () => {
 
-    useEffect(() =>{
-        setLoading(true);
-        axios.get(`/user_sports/sporter`)
-            .then((response) =>{
-                setAccount(response.data)
-                setSporter(response.data)
-                setLoading(false);
+    const [sportActivity, setSportActivity] = useState([]);
+
+    useEffect(() => {
+        axios.get(`/activity`)
+            .then((response) => {
+                setSportActivity(response.data);
+                console.log();
+
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error)
-            });
-    },[])
+            })
+    }, [])
 
-    const deleteSporterAccount = id => {
-        return axios.delete(`/user_sports/admin/sporter/${id}`, sporter.id)
+
+    const deleteActivity = activityId => {
+        return axios.delete(`/activity/trainer/${activityId}`, sportActivity.activityId)
             .then(response => {
-                const del = account.filter(sporter => id !== sporter.id)
-                setAccount(del)
+                const del = setSportActivity.filter(account => activityId !== account.activityId)
+                setSportActivity(del)
                 console.log(response);
             }).catch(e => (
                 console.log(e)
@@ -137,44 +129,52 @@ const DeleteSporter = () =>{
     }
 
     return (
-        <div>
-            {loading &&
-            <p>Loading...</p>}
-            {!loading &&
-            <div className="form">
-                <h2>Sporter Accounts</h2>
-                <div className="form-page">
-                    {account.map((sporter, i) =>(
-                        <div className="form"
-                             key={i} >
+        <>
+            <div className="form-page">
+                <h2>Alle activiteiten</h2>
+                {sportActivity.map((activity, index) => (
+                        <div key={index} className="form">
+                            <div hidden>{activity.activityId}</div>
                             <div>
-                                <div>{sporter.id}</div>
-                                <div>
-                                    <h4>Voornaam: </h4>
-                                    {sporter.firstname}
-                                </div>
-                                <div>
-                                    <h4>Achternaam: </h4>
-                                    {sporter.lastname}
-                                </div>
-                                <div>
-                                    <h4>Gebruikersnaam: </h4>
-                                    {sporter.username}
-                                </div>
-                                <div>
-                                    <h4>Email adres: </h4>
-                                    {sporter.email}
-                                </div>
-                                <br/>
+                                <h4>Sportactiviteit: </h4>
+                                {activity.activityName}
+                            </div>
+                            <div>
+                                <h4>Naam Trainer: </h4>
+
+                                {activity.nameTrainer}
+                            </div>
+                            <div>
+                                <h4>Adres: </h4>
+                                {activity.address}
+                            </div>
+                            <div>
+                                <h4>Postcode: </h4>
+                                {activity.zipcode}
+                            </div>
+                            <div>
+                                <h4>Plaats: </h4>
+                                {activity.city}
+                            </div>
+                            <div>
+                                <h4>Tijd: </h4>
+                                {activity.time}
+                            </div>
+                            <div>
+                                <h4>Datum:</h4>
+                                {activity.date}
+                            </div>
+                            <div>
                                 <button
-                                    onClick={() => deleteSporterAccount(sporter.id)}
-                                >Verwijder Sporteraccount</button>
+                                    onClick={() => deleteActivity(activity.activityId)}
+                                >
+                                    Verwijder Activiteit
+                                </button>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    )
+                )}
             </div>
-            }
-        </div>
+        </>
     )
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import AuthService from "../../services/auth.service";
-import {Link} from "react-router-dom";
 
 const Profile = () => {
     const currentUser = AuthService.getCurrentUser();

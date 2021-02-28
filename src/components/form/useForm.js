@@ -12,6 +12,7 @@ const useForm = (callBack, validate) => {
         // password2: ""
     })
 
+
     const [errors, setErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [serverErrors, setServerErrors] = useState({});

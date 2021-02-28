@@ -23,7 +23,9 @@ export default function validateInfo(formData){
 
     if (!formData.password){
         errors.password = "Veld mag niet leeg zijn";
-    } else if(formData.password.length < 8){
+    } else if(formData.password.length < 8
+        // || !/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.password)
+    ){
         errors.password = "Wachtwoord moet 8 of meer karakters hebben";
     }
 

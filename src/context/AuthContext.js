@@ -16,7 +16,7 @@ function AuthContextProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{authState}}>
+        <AuthContext.Provider value={{...authState}}>
             {authState.status === 'done' && children}
             {authState.status === 'pending' && <p>Loading...</p>}
         </AuthContext.Provider>
